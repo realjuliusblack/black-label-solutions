@@ -47,7 +47,8 @@ export default function Problem() {
         transition={{ duration: 0.6, delay: 0.6 }}
         className="mt-16 font-[family-name:var(--font-cormorant)] text-2xl md:text-3xl text-gold italic"
       >
-        Give me 15 minutes. I&apos;ll show you exactly where you&apos;re bleeding.
+        When you&apos;re ready, let&apos;s have a chat.
+        <span className="block text-lg text-gold/50 mt-2 not-italic font-[family-name:var(--font-inter)] font-light">&mdash; Midas</span>
       </motion.p>
     </SectionWrapper>
   );
