@@ -138,13 +138,16 @@ html, body {
 
 .hero-subtitle {
   font-size: clamp(16px, 1.8vw, 21px); font-weight: 300;
-  color: var(--t2); text-align: center; max-width: 620px;
-  margin-top: 28px; line-height: 1.7;
+  text-align: center; max-width: 620px; margin-top: 28px; line-height: 1.7;
+  background: linear-gradient(135deg, #c9a96e 0%, #e8d5a3 40%, #c9a96e 60%, #a8884a 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 
 .section-label {
   font-size: 12px; font-weight: 700; letter-spacing: 4px;
-  text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+  text-transform: uppercase; margin-bottom: 16px;
+  background: linear-gradient(135deg, #c9a96e 0%, #e8d5a3 40%, #c9a96e 60%, #a8884a 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 
 .section-title {
@@ -155,9 +158,10 @@ html, body {
 }
 
 .section-desc {
-  font-size: clamp(15px, 1.5vw, 19px); color: var(--t2);
-  text-align: center; max-width: 640px; margin-top: 20px;
+  font-size: clamp(15px, 1.5vw, 19px); text-align: center; max-width: 640px; margin-top: 20px;
   line-height: 1.7; font-weight: 300;
+  background: linear-gradient(135deg, #c9a96e 0%, #e8d5a3 40%, #c9a96e 60%, #a8884a 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 
 /* ═══════════════════════════════════════
@@ -196,7 +200,11 @@ html, body {
   color: var(--gold); text-shadow: 0 0 12px rgba(201,169,110,0.3);
 }
 .card-title { font-weight: 600; font-size: 17px; color: var(--t1); margin-bottom: 10px; }
-.card-desc { font-size: 14px; color: var(--t3); line-height: 1.6; font-weight: 300; }
+.card-desc {
+  font-size: 14px; line-height: 1.6; font-weight: 300;
+  background: linear-gradient(135deg, #c9a96e 0%, #e8d5a3 40%, #c9a96e 60%, #a8884a 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
 
 /* Step card number */
 .step-num {
@@ -210,7 +218,9 @@ html, body {
 .bullet-list { list-style: none; display: flex; flex-direction: column; gap: 18px; max-width: 700px; width: 100%; }
 .bullet-list li {
   display: flex; align-items: flex-start; gap: 16px;
-  font-size: 17px; color: var(--t2); line-height: 1.6; font-weight: 300;
+  font-size: 17px; line-height: 1.6; font-weight: 300;
+  background: linear-gradient(135deg, #c9a96e 0%, #e8d5a3 40%, #c9a96e 60%, #a8884a 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 .bullet-dot {
   width: 8px; height: 8px; border-radius: 50%; margin-top: 9px; flex-shrink: 0;
@@ -238,7 +248,11 @@ html, body {
 }
 .timeline-time { font-size: 11px; color: var(--gold-40); letter-spacing: 1px; font-weight: 600; }
 .timeline-title { font-size: 16px; font-weight: 600; color: var(--t1); margin: 4px 0 4px; }
-.timeline-desc { font-size: 13px; color: var(--t3); line-height: 1.6; font-weight: 300; }
+.timeline-desc {
+  font-size: 13px; line-height: 1.6; font-weight: 300;
+  background: linear-gradient(135deg, #c9a96e 0%, #e8d5a3 40%, #c9a96e 60%, #a8884a 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
 
 /* ═══════════════════════════════════════
    ORG CHART
@@ -259,10 +273,10 @@ html, body {
 .org-agent {
   padding: 10px 14px; border-radius: 8px;
   border: 1px solid var(--border); background: var(--surface);
-  text-align: center; font-size: 12px; color: var(--t3); font-weight: 400;
+  text-align: center; font-size: 12px; color: var(--gold-60); font-weight: 400;
   transition: all 0.3s ease;
 }
-.org-agent:hover { border-color: var(--border-gold); color: var(--t2); }
+.org-agent:hover { border-color: var(--border-gold); color: var(--gold); }
 
 /* ═══════════════════════════════════════
    COMPARE
@@ -277,11 +291,15 @@ html, body {
   font-size: 13px; font-weight: 700; letter-spacing: 3px;
   text-transform: uppercase; margin-bottom: 8px; padding-bottom: 12px; border-bottom: 2px solid;
 }
-.compare-col.before .compare-header { color: var(--t4); border-color: rgba(255,255,255,0.06); }
+.compare-col.before .compare-header { color: var(--gold-40); border-color: rgba(201,169,110,0.1); }
 .compare-col.after .compare-header { color: var(--gold); border-color: var(--gold-25); }
 .compare-item { font-size: 16px; line-height: 1.6; font-weight: 300; }
-.compare-col.before .compare-item { color: var(--t4); }
-.compare-col.after .compare-item { color: var(--gold); font-weight: 400; }
+.compare-col.before .compare-item { color: var(--gold-40); }
+.compare-col.after .compare-item {
+  font-weight: 400;
+  background: linear-gradient(135deg, #c9a96e 0%, #e8d5a3 40%, #c9a96e 60%, #a8884a 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
 .compare-divider {
   width: 2px; background: linear-gradient(to bottom, transparent, var(--border-gold), transparent);
   min-height: 250px; align-self: stretch;
@@ -319,7 +337,11 @@ html, body {
 }
 .bl-phase:hover { border-color: rgba(201,169,110,0.25); background: rgba(201,169,110,0.06); }
 .bl-phase-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
-.bl-phase-text { font-size: 14px; color: var(--t2); line-height: 1.6; font-weight: 300; }
+.bl-phase-text {
+  font-size: 14px; line-height: 1.6; font-weight: 300;
+  background: linear-gradient(135deg, #c9a96e 0%, #e8d5a3 40%, #c9a96e 60%, #a8884a 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
 
 .bl-score { font-size: 56px; font-weight: 700; letter-spacing: -2px; line-height: 1; margin-top: 28px; }
 .bl-score-label { font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-60); margin-top: 8px; }
@@ -337,7 +359,11 @@ html, body {
 .faq-q:hover { color: var(--gold); }
 .faq-toggle { color: var(--gold-40); font-size: 20px; transition: transform 0.3s; }
 .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
-.faq-a-inner { padding-bottom: 20px; font-size: 14px; color: var(--t3); line-height: 1.7; font-weight: 300; }
+.faq-a-inner {
+  padding-bottom: 20px; font-size: 14px; line-height: 1.7; font-weight: 300;
+  background: linear-gradient(135deg, #c9a96e 0%, #e8d5a3 40%, #c9a96e 60%, #a8884a 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
 .faq-item.open .faq-a { max-height: 200px; }
 .faq-item.open .faq-toggle { transform: rotate(45deg); }
 
@@ -384,8 +410,8 @@ html, body {
   <div class="cta-row">
     <a href="#" class="cta-btn primary">Talk to Midas Now</a>
   </div>
-  <p style="margin-top:16px; font-size:13px; color:var(--t4);">15 minutes with Midas. He'll diagnose your business for free.</p>
-  <p style="margin-top:48px; font-size:13px; color:var(--t4);">Press &rarr; to begin</p>
+  <p style="margin-top:16px; font-size:13px; color:var(--gold-40);">15 minutes with Midas. He'll diagnose your business for free.</p>
+  <p style="margin-top:48px; font-size:13px; color:var(--gold-40);">Press &rarr; to begin</p>
 </div>
 
 <!-- ═══════ 2: THE PROBLEM ═══════ -->
@@ -450,7 +476,7 @@ html, body {
     <div class="org-connector"></div>
     <div class="org-node">&#128172; You &mdash; talk to Midas, that's it</div>
   </div>
-  <p style="margin-top:20px; font-size:14px; color:var(--t4);">Every week there's more AI in your company than the week before.</p>
+  <p style="margin-top:20px; font-size:14px; color:var(--gold-40);">Every week there's more AI in your company than the week before.</p>
 </div>
 
 <!-- ═══════ 6: A DAY WITH MIDAS ═══════ -->
@@ -585,10 +611,10 @@ html, body {
     <a href="#" class="cta-btn outline">Video Call</a>
     <a href="#" class="cta-btn outline">Text Midas</a>
   </div>
-  <p style="margin-top:24px; font-size:13px; color:var(--t4);">Yes, this entire pitch was written by AI. That's the point.</p>
+  <p style="margin-top:24px; font-size:13px; color:var(--gold-40);">Yes, this entire pitch was written by AI. That's the point.</p>
   <div style="margin-top:56px; text-align:center;">
     <p style="font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:700; letter-spacing:1px;"><span class="gold-grad">BLACK LABEL</span></p>
-    <p style="font-size:11px; letter-spacing:5px; color:var(--t4); text-transform:uppercase; margin-top:4px;">Solutions</p>
+    <p style="font-size:11px; letter-spacing:5px; color:var(--gold-40); text-transform:uppercase; margin-top:4px;">Solutions</p>
     <p style="font-family:'Cormorant Garamond',serif; font-size:16px; font-style:italic; color:var(--gold-40); margin-top:14px;">Excellence in Execution.</p>
   </div>
 </div>
