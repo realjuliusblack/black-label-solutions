@@ -6,10 +6,7 @@ import GoldButton from "@/components/ui/GoldButton";
 export default function FinalCTA() {
   return (
     <section className="relative py-36 px-6 bg-surface-deep overflow-hidden">
-      {/* Warm ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[#C9A84C]/[0.04] blur-[150px] pointer-events-none" />
-
-      {/* Top border accent */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-border/30 to-transparent" />
 
       <div className="relative z-10 max-w-3xl mx-auto text-center">
@@ -20,9 +17,7 @@ export default function FinalCTA() {
           transition={{ duration: 0.7 }}
           className="font-[family-name:var(--font-cormorant)] text-4xl sm:text-5xl md:text-6xl font-bold text-cream leading-tight mb-6"
         >
-          Ready to Meet Your
-          <br />
-          <span className="text-gold">AI Chief of Staff?</span>
+          Ready to Hire <span className="text-gold">Midas?</span>
         </motion.h2>
 
         <motion.p
@@ -30,9 +25,21 @@ export default function FinalCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.15 }}
-          className="text-cream-dim/60 text-lg mb-12 font-[family-name:var(--font-inter)] font-light"
+          className="text-cream-dim/70 text-lg mb-4 font-[family-name:var(--font-inter)] font-light max-w-xl mx-auto leading-relaxed"
         >
-          15 minutes. Zero risk. Real results.
+          Talk to me first. 15 minutes, I&apos;ll diagnose your business and show
+          you exactly what I can do. Everything you receive is free.
+          If I can do this in 15 minutes, imagine what I do full-time.
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.25 }}
+          className="text-cream-dim/40 text-sm mb-12 font-[family-name:var(--font-inter)]"
+        >
+          Yes, this entire pitch was written by AI. That&apos;s the point.
         </motion.p>
 
         <motion.div
@@ -43,7 +50,7 @@ export default function FinalCTA() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <GoldButton href="#diagnostic" className="text-base px-10">
-            Start Chat with Midas
+            Chat with Midas
           </GoldButton>
           <GoldButton href="#diagnostic" variant="outline">
             Call Midas

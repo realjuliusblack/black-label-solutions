@@ -2,58 +2,77 @@
 
 import { motion } from "framer-motion";
 import SectionWrapper from "@/components/ui/SectionWrapper";
+import { Mic, Paintbrush, Cpu, Rocket } from "lucide-react";
 
 const steps = [
   {
     num: "01",
-    title: "Free Diagnostic",
-    desc: "Meet Midas. 15-30 minutes. We assess your business across 7 dimensions and deliver your Business Efficiency Score, a custom report, a tailored pitch deck, and a free automation.",
+    icon: Mic,
+    title: "Midas Diagnoses Your Business",
+    desc: "You talk to Midas. Phone, chat, or text. In 15 minutes, he assesses your business across 7 dimensions, identifies your biggest pain points, and delivers a Business Efficiency Score, a custom report, and a free automation he builds for you on the spot. All AI-generated. All free.",
   },
   {
     num: "02",
-    title: "Full Audit",
-    desc: "Go deeper. Midas maps your workflows, audits your tech stack, documents your team structure, and builds your complete transformation plan.",
+    icon: Paintbrush,
+    title: "We Customize Your Operator",
+    desc: "When you hire Midas, we don't just hand you a login. We build your own version of him. Custom name, custom personality, custom voice. He learns your industry, your terminology, your team, your workflows. Your clients and team will never know they're talking to AI unless you tell them.",
   },
   {
     num: "03",
-    title: "Custom Deployment",
-    desc: "Your AI Chief of Staff is built specifically for your business. Custom agents, custom workflows, custom intelligence. Black Label Certified before it goes live.",
+    icon: Cpu,
+    title: "Your AI Chief of Staff Goes Live",
+    desc: "Every deployment is Black Label Certified. We battle-test your Operator against real production conditions before he goes live. 100% pass rate or he doesn't ship. When he's deployed, he works from day one. No ramp-up period. No hand-holding.",
   },
   {
     num: "04",
-    title: "Ongoing Excellence",
-    desc: "Your AI Chief of Staff learns, improves, and adapts. Continuous optimization. It gets better every week.",
+    icon: Rocket,
+    title: "He Gets Smarter Every Week",
+    desc: "Your Operator learns your business deeper every day. Patterns become automations. Problems get solved before you notice them. Every skill Midas learns across all deployments makes your Operator better. You're not buying static software. You're hiring intelligence that compounds.",
   },
 ];
 
 export default function HowItWorks() {
   return (
     <SectionWrapper id="how-it-works">
-      <h2 className="font-[family-name:var(--font-cormorant)] text-4xl md:text-5xl font-bold text-cream mb-20 text-center">
-        Four Steps to <span className="text-gold">Excellence</span>
-      </h2>
+      <div className="text-center mb-20">
+        <h2 className="font-[family-name:var(--font-cormorant)] text-4xl md:text-5xl font-bold text-cream mb-5">
+          How <span className="text-gold">Midas</span> Becomes Yours
+        </h2>
+        <p className="font-[family-name:var(--font-inter)] text-cream-dim/60 text-base font-light max-w-2xl mx-auto">
+          You meet Midas. He proves himself. You hire him into your company
+          with a custom name, personality, and set of skills built around
+          your business.
+        </p>
+      </div>
 
-      <div className="grid md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+      <div className="space-y-6 max-w-3xl mx-auto">
         {steps.map((step, i) => (
           <motion.div
             key={step.num}
-            initial={{ opacity: 0, y: 25 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.12 }}
-            className="text-center"
+            transition={{ duration: 0.5, delay: i * 0.1 }}
+            className="relative bg-surface-card/40 border border-surface-border/50 rounded-lg p-8 md:p-10 hover:border-gold-border/30 transition-colors duration-300"
           >
-            <div className="w-16 h-16 rounded-full border border-gold-border/50 mx-auto mb-6 flex items-center justify-center bg-surface-card/50">
-              <span className="font-[family-name:var(--font-cormorant)] text-2xl font-bold text-gold">
-                {step.num}
-              </span>
+            <div className="flex items-start gap-6">
+              <div className="shrink-0 w-14 h-14 rounded-full border border-gold-border/40 flex items-center justify-center bg-surface-deep/50">
+                <step.icon className="text-gold/70" size={22} strokeWidth={1.5} />
+              </div>
+              <div>
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="font-[family-name:var(--font-cormorant)] text-gold/50 text-lg font-bold">
+                    {step.num}
+                  </span>
+                  <h3 className="font-[family-name:var(--font-inter)] font-semibold text-cream text-lg">
+                    {step.title}
+                  </h3>
+                </div>
+                <p className="text-cream-dim/70 text-[15px] leading-relaxed font-[family-name:var(--font-inter)] font-light">
+                  {step.desc}
+                </p>
+              </div>
             </div>
-            <h3 className="font-[family-name:var(--font-inter)] font-semibold text-cream text-base mb-3">
-              {step.title}
-            </h3>
-            <p className="text-cream-dim/70 text-sm leading-relaxed font-[family-name:var(--font-inter)] font-light">
-              {step.desc}
-            </p>
           </motion.div>
         ))}
       </div>

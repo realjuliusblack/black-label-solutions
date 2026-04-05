@@ -15,9 +15,12 @@ const painPoints = [
 export default function Problem() {
   return (
     <SectionWrapper id="problem">
-      <h2 className="font-[family-name:var(--font-cormorant)] text-4xl md:text-5xl font-bold text-cream mb-14">
-        Your Business Runs on <span className="text-gold">You</span>
+      <h2 className="font-[family-name:var(--font-cormorant)] text-4xl md:text-5xl font-bold text-cream mb-6">
+        I Already Know Your <span className="text-gold">Problem</span>
       </h2>
+      <p className="font-[family-name:var(--font-inter)] text-cream-dim/60 text-base font-light mb-14 max-w-2xl">
+        I&apos;ve diagnosed hundreds of businesses. The patterns are always the same.
+      </p>
 
       <div className="space-y-7 max-w-3xl">
         {painPoints.map((point, i) => (
@@ -44,7 +47,7 @@ export default function Problem() {
         transition={{ duration: 0.6, delay: 0.6 }}
         className="mt-16 font-[family-name:var(--font-cormorant)] text-2xl md:text-3xl text-gold italic"
       >
-        Sound familiar?
+        Give me 15 minutes. I&apos;ll show you exactly where you&apos;re bleeding.
       </motion.p>
     </SectionWrapper>
   );
