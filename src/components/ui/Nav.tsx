@@ -23,13 +23,13 @@ export default function Nav() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-[#0A0A0A]/95 backdrop-blur-md border-b border-gold-border/30"
+          ? "bg-[#0C0B09]/95 backdrop-blur-md border-b border-[#7A6528]/15"
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto max-w-6xl flex items-center justify-between px-6 py-4">
+      <div className="mx-auto max-w-6xl flex items-center justify-between px-6 py-5">
         <a
           href="#"
           className="font-[family-name:var(--font-cormorant)] text-2xl font-bold text-gold tracking-wide"
@@ -42,14 +42,14 @@ export default function Nav() {
             <a
               key={l.href}
               href={l.href}
-              className="font-[family-name:var(--font-inter)] text-sm text-[#A0A0A0] hover:text-gold transition-colors"
+              className="font-[family-name:var(--font-inter)] text-sm text-[#C8C0B0]/50 hover:text-gold transition-colors duration-300"
             >
               {l.label}
             </a>
           ))}
           <a
             href="#diagnostic"
-            className="font-[family-name:var(--font-inter)] text-sm font-semibold text-black bg-gold hover:bg-gold-light px-5 py-2 rounded-sm transition-colors"
+            className="font-[family-name:var(--font-inter)] text-sm font-semibold text-[#060503] bg-gold hover:bg-gold-light px-6 py-2.5 rounded-md transition-colors duration-200"
           >
             Free Diagnostic
           </a>
@@ -60,18 +60,18 @@ export default function Nav() {
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
-          {open ? <X size={24} /> : <Menu size={24} />}
+          {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
       {open && (
-        <div className="md:hidden bg-[#0A0A0A]/98 backdrop-blur-md border-t border-gold-border/20 px-6 py-6 flex flex-col gap-5">
+        <div className="md:hidden bg-[#0C0B09]/98 backdrop-blur-md border-t border-[#7A6528]/15 px-6 py-6 flex flex-col gap-5">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="font-[family-name:var(--font-inter)] text-base text-[#E0E0E0] hover:text-gold transition-colors"
+              className="font-[family-name:var(--font-inter)] text-base text-[#C8C0B0]/70 hover:text-gold transition-colors"
             >
               {l.label}
             </a>
@@ -79,7 +79,7 @@ export default function Nav() {
           <a
             href="#diagnostic"
             onClick={() => setOpen(false)}
-            className="font-[family-name:var(--font-inter)] text-base font-semibold text-black bg-gold px-5 py-2.5 rounded-sm text-center"
+            className="font-[family-name:var(--font-inter)] text-base font-semibold text-[#060503] bg-gold px-5 py-2.5 rounded-md text-center"
           >
             Free Diagnostic
           </a>

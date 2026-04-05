@@ -17,9 +17,8 @@ const sampleScores = [45, 60, 35, 40, 55, 30, 50];
 function RadarChart() {
   const cx = 150;
   const cy = 150;
-  const r = 120;
+  const r = 110;
   const n = 7;
-
   const angleStep = (2 * Math.PI) / n;
   const offset = -Math.PI / 2;
 
@@ -28,8 +27,8 @@ function RadarChart() {
     return {
       x: cx + r * Math.cos(angle),
       y: cy + r * Math.sin(angle),
-      lx: cx + (r + 30) * Math.cos(angle),
-      ly: cy + (r + 30) * Math.sin(angle),
+      lx: cx + (r + 28) * Math.cos(angle),
+      ly: cy + (r + 28) * Math.sin(angle),
     };
   });
 
@@ -42,7 +41,7 @@ function RadarChart() {
   const rings = [0.25, 0.5, 0.75, 1];
 
   return (
-    <svg viewBox="0 0 300 300" className="w-full max-w-[300px]">
+    <svg viewBox="0 0 300 300" className="w-full max-w-[280px]">
       {rings.map((scale) => (
         <polygon
           key={scale}
@@ -53,35 +52,25 @@ function RadarChart() {
             })
             .join(" ")}
           fill="none"
-          stroke="#2A2A2A"
+          stroke="#2A2620"
           strokeWidth="0.5"
         />
       ))}
 
       {axisPoints.map((p, i) => (
-        <line
-          key={i}
-          x1={cx}
-          y1={cy}
-          x2={p.x}
-          y2={p.y}
-          stroke="#2A2A2A"
-          strokeWidth="0.5"
-        />
+        <line key={i} x1={cx} y1={cy} x2={p.x} y2={p.y} stroke="#2A2620" strokeWidth="0.5" />
       ))}
 
       <polygon
         points={dataPoints.join(" ")}
-        fill="rgba(212, 175, 55, 0.15)"
-        stroke="#D4AF37"
-        strokeWidth="2"
+        fill="rgba(201, 168, 76, 0.1)"
+        stroke="#C9A84C"
+        strokeWidth="1.5"
       />
 
       {dataPoints.map((point, i) => {
         const [px, py] = point.split(",").map(Number);
-        return (
-          <circle key={i} cx={px} cy={py} r="3" fill="#D4AF37" />
-        );
+        return <circle key={i} cx={px} cy={py} r="3" fill="#C9A84C" />;
       })}
 
       {axisPoints.map((p, i) => (
@@ -91,9 +80,9 @@ function RadarChart() {
           y={p.ly}
           textAnchor="middle"
           dominantBaseline="middle"
-          fill="#A0A0A0"
-          fontSize="8"
-          fontFamily="var(--font-jetbrains), monospace"
+          fill="#C8C0B0"
+          fontSize="7.5"
+          fontFamily="var(--font-inter), sans-serif"
         >
           {domains[i]}
         </text>
@@ -104,23 +93,23 @@ function RadarChart() {
 
 export default function EfficiencyScore() {
   return (
-    <SectionWrapper id="score">
-      <h2 className="font-[family-name:var(--font-cormorant)] text-4xl md:text-5xl font-bold text-gold mb-14 text-center">
-        Your Score. Your Roadmap.
+    <SectionWrapper id="score" className="bg-surface-elevated">
+      <h2 className="font-[family-name:var(--font-cormorant)] text-4xl md:text-5xl font-bold text-cream mb-16 text-center">
+        Your Score. <span className="text-gold">Your Roadmap.</span>
       </h2>
 
-      <div className="grid md:grid-cols-2 gap-12 items-center">
+      <div className="grid md:grid-cols-2 gap-16 items-center">
         <div>
-          <p className="text-[#E0E0E0] text-base mb-8 leading-relaxed">
+          <p className="text-cream-dim text-base mb-8 leading-relaxed font-[family-name:var(--font-inter)] font-light">
             We assess every business across 7 dimensions:
           </p>
-          <ul className="space-y-3">
+          <ul className="space-y-4">
             {domains.map((d, i) => (
-              <li key={d} className="flex items-center gap-3">
-                <span className="font-[family-name:var(--font-cormorant)] text-gold font-bold text-lg w-6">
+              <li key={d} className="flex items-center gap-4">
+                <span className="font-[family-name:var(--font-cormorant)] text-gold/70 font-bold text-lg w-6 text-right">
                   {i + 1}
                 </span>
-                <span className="text-[#E0E0E0] text-sm font-[family-name:var(--font-inter)]">
+                <span className="text-cream-dim text-[15px] font-[family-name:var(--font-inter)]">
                   {d}
                 </span>
               </li>
@@ -130,21 +119,21 @@ export default function EfficiencyScore() {
 
         <div className="flex flex-col items-center">
           <RadarChart />
-          <div className="mt-8 text-center">
+          <div className="mt-10 text-center">
             <span className="font-[family-name:var(--font-cormorant)] text-6xl font-bold text-gold">
               580
             </span>
-            <span className="font-[family-name:var(--font-cormorant)] text-2xl text-[#A0A0A0] ml-2">
+            <span className="font-[family-name:var(--font-cormorant)] text-2xl text-cream-dim/50 ml-2">
               / 1000
             </span>
-            <p className="text-[#F5D061] font-[family-name:var(--font-inter)] font-semibold text-sm mt-2">
+            <p className="text-gold/60 font-[family-name:var(--font-inter)] font-medium text-sm mt-2 tracking-wide uppercase">
               Average
             </p>
           </div>
         </div>
       </div>
 
-      <p className="text-center text-[#A0A0A0] text-sm mt-14">
+      <p className="text-center text-cream-dim/50 text-sm mt-16 font-[family-name:var(--font-inter)]">
         Most businesses score between 400-600. Where do you think you land?
       </p>
     </SectionWrapper>

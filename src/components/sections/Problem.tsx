@@ -15,22 +15,22 @@ const painPoints = [
 export default function Problem() {
   return (
     <SectionWrapper id="problem">
-      <h2 className="font-[family-name:var(--font-cormorant)] text-4xl md:text-5xl font-bold text-gold mb-12">
-        Your Business Runs on You
+      <h2 className="font-[family-name:var(--font-cormorant)] text-4xl md:text-5xl font-bold text-cream mb-14">
+        Your Business Runs on <span className="text-gold">You</span>
       </h2>
 
-      <div className="space-y-6 max-w-3xl">
+      <div className="space-y-7 max-w-3xl">
         {painPoints.map((point, i) => (
           <motion.div
             key={i}
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -15 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="flex items-start gap-4"
+            transition={{ duration: 0.5, delay: i * 0.08 }}
+            className="flex items-start gap-5 group"
           >
-            <span className="mt-2 w-2 h-2 bg-gold rotate-45 shrink-0" />
-            <p className="text-[#E0E0E0] text-base md:text-lg leading-relaxed">
+            <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-gold shrink-0 group-hover:shadow-[0_0_8px_rgba(201,168,76,0.5)] transition-shadow" />
+            <p className="text-cream-dim text-base md:text-lg leading-relaxed font-[family-name:var(--font-inter)] font-light">
               {point}
             </p>
           </motion.div>
@@ -41,8 +41,8 @@ export default function Problem() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.7 }}
-        className="mt-14 font-[family-name:var(--font-cormorant)] text-2xl md:text-3xl text-gold italic"
+        transition={{ duration: 0.6, delay: 0.6 }}
+        className="mt-16 font-[family-name:var(--font-cormorant)] text-2xl md:text-3xl text-gold italic"
       >
         Sound familiar?
       </motion.p>

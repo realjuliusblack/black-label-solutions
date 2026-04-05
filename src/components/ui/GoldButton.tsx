@@ -14,13 +14,13 @@ export default function GoldButton({
   onClick,
 }: GoldButtonProps) {
   const base =
-    "inline-flex items-center justify-center px-8 py-3.5 font-[family-name:var(--font-inter)] font-semibold text-base tracking-wide transition-all duration-200 rounded-sm cursor-pointer";
+    "inline-flex items-center justify-center px-8 py-3.5 font-[family-name:var(--font-inter)] font-semibold text-[15px] tracking-wide transition-all duration-300 rounded-md cursor-pointer";
 
   const variants = {
     primary:
-      "bg-gold text-black hover:bg-gold-light active:bg-gold-hover",
+      "bg-gold text-[#060503] hover:bg-gold-light hover:shadow-[0_0_30px_rgba(201,168,76,0.15)] active:bg-gold-hover",
     outline:
-      "border border-gold-border text-gold hover:border-gold hover:text-gold-light bg-transparent",
+      "border border-gold-border/50 text-gold/80 hover:border-gold/60 hover:text-gold bg-transparent",
   };
 
   const classes = `${base} ${variants[variant]} ${className}`;

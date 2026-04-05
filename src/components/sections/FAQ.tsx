@@ -36,36 +36,36 @@ export default function FAQ() {
 
   return (
     <SectionWrapper id="faq">
-      <h2 className="font-[family-name:var(--font-cormorant)] text-4xl md:text-5xl font-bold text-gold mb-14 text-center">
+      <h2 className="font-[family-name:var(--font-cormorant)] text-4xl md:text-5xl font-bold text-cream mb-16 text-center">
         Questions
       </h2>
 
-      <div className="max-w-2xl mx-auto space-y-2">
+      <div className="max-w-2xl mx-auto space-y-3">
         {faqs.map((faq, i) => {
           const isOpen = openIndex === i;
           return (
             <div
               key={i}
-              className="border border-surface-border rounded-sm overflow-hidden"
+              className="border border-surface-border/50 rounded-lg overflow-hidden bg-surface-card/30"
             >
               <button
                 onClick={() => setOpenIndex(isOpen ? null : i)}
                 className="w-full flex items-center justify-between px-6 py-5 text-left cursor-pointer hover:bg-surface-card/50 transition-colors"
               >
-                <span className="font-[family-name:var(--font-inter)] font-semibold text-white text-base pr-4">
+                <span className="font-[family-name:var(--font-inter)] font-medium text-cream text-[15px] pr-4">
                   {faq.q}
                 </span>
                 {isOpen ? (
-                  <Minus className="text-gold shrink-0" size={18} />
+                  <Minus className="text-gold/60 shrink-0" size={16} />
                 ) : (
-                  <Plus className="text-gold shrink-0" size={18} />
+                  <Plus className="text-gold/60 shrink-0" size={16} />
                 )}
               </button>
               <div
                 className="transition-all duration-300 ease-out overflow-hidden"
                 style={{ maxHeight: isOpen ? "200px" : "0px" }}
               >
-                <p className="px-6 pb-5 text-[#E0E0E0] text-sm leading-relaxed">
+                <p className="px-6 pb-5 text-cream-dim/70 text-sm leading-relaxed font-[family-name:var(--font-inter)] font-light">
                   {faq.a}
                 </p>
               </div>

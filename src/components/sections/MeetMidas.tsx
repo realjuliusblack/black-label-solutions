@@ -26,20 +26,17 @@ const capabilities = [
 
 export default function MeetMidas() {
   return (
-    <SectionWrapper id="solution">
-      <h2 className="font-[family-name:var(--font-cormorant)] text-4xl md:text-5xl font-bold text-gold mb-4">
-        Meet Midas
-      </h2>
-      <p className="font-[family-name:var(--font-cormorant)] text-xl text-[#A0A0A0] mb-6">
-        The AI behind Black Label Solutions
-      </p>
-      <p className="text-[#E0E0E0] text-base leading-relaxed max-w-3xl mb-14">
-        Midas is not a chatbot. Not a dashboard. Not another tool to learn.
-        Midas is your AI Chief of Staff. It runs your operations. Manages your
-        pipeline. Monitors your data. Coordinates your team. Reports to you
-        with insights, not just numbers. It doesn&apos;t wait for commands. It
-        works. 24/7. Getting smarter every day.
-      </p>
+    <SectionWrapper id="solution" className="bg-surface-elevated">
+      <div className="text-center mb-16">
+        <h2 className="font-[family-name:var(--font-cormorant)] text-4xl md:text-5xl font-bold text-cream mb-4">
+          Meet <span className="text-gold">Midas</span>
+        </h2>
+        <p className="font-[family-name:var(--font-inter)] text-cream-dim text-lg font-light max-w-2xl mx-auto leading-relaxed">
+          Not a chatbot. Not a dashboard. Not another tool to learn.
+          A permanent AI executive that runs your business. 24/7.
+          Getting smarter every day.
+        </p>
+      </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {capabilities.map((cap, i) => (
@@ -48,18 +45,18 @@ export default function MeetMidas() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: i * 0.07 }}
-            className="bg-surface-card border border-surface-border rounded-sm p-6 hover:border-gold-border transition-all duration-200 hover:scale-[1.02] group"
+            transition={{ duration: 0.4, delay: i * 0.06 }}
+            className="bg-surface-card/80 border border-surface-border rounded-lg p-6 hover:border-gold-border/60 transition-all duration-300 group"
           >
             <cap.icon
-              className="text-gold mb-4 group-hover:text-gold-light transition-colors"
-              size={28}
+              className="text-gold/80 mb-4 group-hover:text-gold transition-colors"
+              size={26}
               strokeWidth={1.5}
             />
-            <h3 className="font-[family-name:var(--font-inter)] font-semibold text-white text-base mb-2">
+            <h3 className="font-[family-name:var(--font-inter)] font-semibold text-cream text-[15px] mb-2">
               {cap.name}
             </h3>
-            <p className="text-[#A0A0A0] text-sm leading-relaxed">
+            <p className="text-cream-dim/70 text-sm leading-relaxed font-[family-name:var(--font-inter)] font-light">
               {cap.desc}
             </p>
           </motion.div>
