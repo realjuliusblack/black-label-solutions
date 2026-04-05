@@ -56,6 +56,9 @@ export default function FinalCTA() {
             Call Midas
           </GoldButton>
           <GoldButton href="#diagnostic" variant="outline">
+            Video Call
+          </GoldButton>
+          <GoldButton href="#diagnostic" variant="outline">
             Text Midas
           </GoldButton>
         </motion.div>

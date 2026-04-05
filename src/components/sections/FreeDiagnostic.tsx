@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import GoldButton from "@/components/ui/GoldButton";
-import { MessageSquare, Phone, Smartphone, CheckCircle } from "lucide-react";
+import { MessageSquare, Phone, Smartphone, Video, CheckCircle } from "lucide-react";
 
 const deliverables = [
   "Business Efficiency Score",
@@ -28,10 +28,11 @@ export default function FreeDiagnostic() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-16 max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 mb-16 max-w-4xl mx-auto">
           {[
             { icon: MessageSquare, label: "Chat", cta: "Start Now", primary: true },
             { icon: Phone, label: "Phone", cta: "Call Midas", primary: false },
+            { icon: Video, label: "Video Call", cta: "Book a Call", primary: false },
             { icon: Smartphone, label: "Text", cta: "Text Midas", primary: false },
           ].map((ch, i) => (
             <motion.div
