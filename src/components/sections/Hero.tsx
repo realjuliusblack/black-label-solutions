@@ -48,8 +48,7 @@ export default function Hero() {
         >
           Your AI Chief of Staff. Built by AI, powered by AI, proudly AI.
           Midas runs your operations, manages your team, and scales your
-          business. Then we customize him for your company, your brand,
-          your way.
+          business. Customized for your company, your brand, your way.
         </motion.p>
 
         <motion.div
