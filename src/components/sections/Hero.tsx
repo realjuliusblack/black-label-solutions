@@ -57,7 +57,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.7 }}
         >
           <GoldButton href="#diagnostic" className="text-base px-12 py-4">
-            Talk to Midas Free
+            Talk to Midas Now
           </GoldButton>
         </motion.div>
 
