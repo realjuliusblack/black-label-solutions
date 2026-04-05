@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Black Label Solutions — Your AI Chief of Staff</title>
+<meta name="description" content="Meet Midas. A hyper-intelligent AI Chief of Staff that runs your operations, manages your team, and scales your business. Customized for your company, your brand, your way.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold: #C9A84C;
+  --gold-rgb: 201,168,76;
+  --gold-10: rgba(201,168,76,0.10);
+  --gold-15: rgba(201,168,76,0.15);
+  --gold-25: rgba(201,168,76,0.25);
+  --gold-40: rgba(201,168,76,0.40);
+  --gold-60: rgba(201,168,76,0.60);
+  --bg: #0C0B09;
+  --bg-2: #100F0C;
+  --surface: #161412;
+  --surface-2: #1C1916;
+  --surface-3: #242018;
+  --border: rgba(201,168,76,0.08);
+  --border-gold: rgba(201,168,76,0.15);
+  --t1: #F5F0E8;
+  --t2: rgba(245,240,232,0.85);
+  --t3: rgba(245,240,232,0.60);
+  --t4: rgba(245,240,232,0.35);
+  --green: #6BBF7A;
+  --red: #D4736C;
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+html, body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--t1);
+  height: 100%;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--gold); color: var(--bg); }
+
+/* ═══════════════════════════════════════
+   SLIDE SYSTEM
+   ═══════════════════════════════════════ */
+.deck { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
+
+.slide {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 60px 80px;
+  opacity: 0; transform: translateX(60px); pointer-events: none;
+  transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
+  will-change: opacity, transform;
+}
+.slide.active { opacity: 1; transform: translateX(0); pointer-events: auto; }
+.slide.exit-left { opacity: 0; transform: translateX(-60px); }
+
+@media (max-width: 768px) { .slide { padding: 40px 28px; } }
+
+/* ═══════════════════════════════════════
+   BACKGROUND
+   ═══════════════════════════════════════ */
+.bg-glow {
+  position: fixed; width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+}
+.bg-glow-1 { top: -200px; left: -100px; }
+.bg-glow-2 { bottom: -200px; right: -100px; top: auto; left: auto; }
+
+.bg-noise {
+  position: fixed; inset: 0; opacity: 0.02; pointer-events: none; z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ═══════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════ */
+.nav-dots {
+  position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 10px; z-index: 100;
+}
+.nav-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--surface-2); border: 1.5px solid var(--border);
+  cursor: pointer; transition: all 0.3s ease;
+}
+.nav-dot:hover { border-color: var(--gold-40); }
+.nav-dot.active {
+  background: var(--gold); border-color: var(--gold);
+  box-shadow: 0 0 10px rgba(201,168,76,0.4);
+}
+
+.nav-arrows { position: fixed; bottom: 24px; right: 40px; display: flex; gap: 8px; z-index: 100; }
+.nav-arrow {
+  width: 40px; height: 40px; border-radius: 10px;
+  border: 1.5px solid var(--border); background: var(--surface);
+  color: var(--t3); display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all 0.2s ease; font-size: 18px;
+}
+.nav-arrow:hover { border-color: var(--gold-40); color: var(--gold); background: var(--gold-10); }
+
+.slide-counter {
+  position: fixed; bottom: 32px; left: 40px;
+  font-size: 13px; color: var(--t3); font-weight: 500; z-index: 100;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ═══════════════════════════════════════
+   TYPOGRAPHY
+   ═══════════════════════════════════════ */
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(48px, 7vw, 90px); font-weight: 700;
+  line-height: 1.05; text-align: center; max-width: 900px;
+}
+.gold { color: var(--gold); }
+
+.hero-subtitle {
+  font-size: clamp(16px, 1.8vw, 20px); font-weight: 300;
+  color: var(--t2); text-align: center; max-width: 600px;
+  margin-top: 28px; line-height: 1.7;
+}
+
+.eyebrow {
+  font-size: 12px; font-weight: 500; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--gold-60); margin-bottom: 20px;
+}
+
+.section-label {
+  font-size: 12px; font-weight: 600; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 4.5vw, 60px); font-weight: 700;
+  line-height: 1.1; text-align: center; max-width: 800px;
+}
+
+.section-desc {
+  font-size: clamp(15px, 1.4vw, 18px); color: var(--t2);
+  text-align: center; max-width: 620px; margin-top: 20px;
+  line-height: 1.7; font-weight: 300;
+}
+
+/* ═══════════════════════════════════════
+   CARDS
+   ═══════════════════════════════════════ */
+.card-grid { display: grid; gap: 16px; max-width: 1000px; width: 100%; margin-top: 40px; }
+.card-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.card-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+.card-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 768px) {
+  .card-grid.cols-3, .card-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .card-grid.cols-3, .card-grid.cols-4, .card-grid.cols-2 { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 28px 24px;
+  transition: all 0.3s ease;
+}
+.card:hover { border-color: var(--border-gold); transform: translateY(-2px); }
+.card-icon { font-size: 28px; margin-bottom: 16px; }
+.card-title { font-weight: 600; font-size: 16px; color: var(--t1); margin-bottom: 8px; }
+.card-desc { font-size: 14px; color: var(--t3); line-height: 1.6; font-weight: 300; }
+
+/* ═══════════════════════════════════════
+   LISTS
+   ═══════════════════════════════════════ */
+.bullet-list { list-style: none; display: flex; flex-direction: column; gap: 20px; max-width: 700px; width: 100%; }
+.bullet-list li {
+  display: flex; align-items: flex-start; gap: 16px;
+  font-size: 17px; color: var(--t2); line-height: 1.6; font-weight: 300;
+}
+.bullet-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
+  margin-top: 10px; flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════
+   TIMELINE
+   ═══════════════════════════════════════ */
+.timeline { max-width: 600px; width: 100%; margin-top: 36px; position: relative; }
+.timeline::before {
+  content: ''; position: absolute; left: 27px; top: 0; bottom: 0;
+  width: 1px; background: linear-gradient(to bottom, var(--gold-25), transparent);
+}
+.timeline-item { position: relative; padding-left: 70px; padding-bottom: 28px; }
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-dot {
+  position: absolute; left: 16px; top: 4px;
+  width: 24px; height: 24px; border-radius: 50%;
+  border: 1.5px solid var(--border-gold); background: var(--surface);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; color: var(--gold-60);
+}
+.timeline-time { font-size: 11px; color: var(--gold-40); letter-spacing: 1px; font-weight: 500; }
+.timeline-title { font-size: 16px; font-weight: 600; color: var(--t1); margin: 4px 0 6px; }
+.timeline-desc { font-size: 14px; color: var(--t3); line-height: 1.6; font-weight: 300; }
+
+/* ═══════════════════════════════════════
+   COMPARE TABLE
+   ═══════════════════════════════════════ */
+.compare-grid {
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  gap: 32px; max-width: 800px; width: 100%; margin-top: 40px; align-items: start;
+}
+@media (max-width: 600px) { .compare-grid { grid-template-columns: 1fr; gap: 24px; } .compare-arrow { display: none; } }
+.compare-col { display: flex; flex-direction: column; gap: 16px; }
+.compare-header {
+  font-size: 13px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 8px; padding-bottom: 12px; border-bottom: 1.5px solid;
+}
+.compare-col.before .compare-header { color: var(--t4); border-color: rgba(245,240,232,0.1); }
+.compare-col.after .compare-header { color: var(--gold); border-color: var(--gold-25); }
+.compare-item { font-size: 15px; line-height: 1.6; font-weight: 300; }
+.compare-col.before .compare-item { color: var(--t4); }
+.compare-col.after .compare-item { color: var(--gold); font-weight: 400; }
+.compare-arrow { display: flex; flex-direction: column; gap: 16px; padding-top: 40px; color: var(--gold-40); font-size: 16px; }
+
+/* ═══════════════════════════════════════
+   AGENT ORG CHART
+   ═══════════════════════════════════════ */
+.org-chart { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 36px; }
+.org-node {
+  padding: 14px 28px; border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border-gold); background: var(--surface);
+  text-align: center; font-size: 15px; font-weight: 500;
+}
+.org-node.primary { border-color: var(--gold-40); background: var(--gold-10); color: var(--gold); }
+.org-connector { width: 1px; height: 20px; background: var(--gold-25); }
+.org-agents {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 700px;
+}
+@media (max-width: 600px) { .org-agents { grid-template-columns: repeat(2, 1fr); } }
+.org-agent {
+  padding: 10px 14px; border-radius: 8px;
+  border: 1px solid var(--border); background: var(--surface);
+  text-align: center; font-size: 12px; color: var(--t3); font-weight: 400;
+}
+
+/* ═══════════════════════════════════════
+   FAQ
+   ═══════════════════════════════════════ */
+.faq-list { max-width: 650px; width: 100%; margin-top: 36px; }
+.faq-item { border-bottom: 1px solid var(--border); }
+.faq-q {
+  width: 100%; padding: 20px 0; display: flex; justify-content: space-between;
+  align-items: center; cursor: pointer; background: none; border: none;
+  color: var(--t1); font-size: 16px; font-weight: 500; text-align: left;
+  font-family: inherit;
+}
+.faq-q:hover { color: var(--gold); }
+.faq-toggle { color: var(--gold-40); font-size: 20px; transition: transform 0.3s; }
+.faq-a {
+  max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+  font-size: 14px; color: var(--t3); line-height: 1.7; font-weight: 300;
+}
+.faq-a-inner { padding-bottom: 20px; }
+.faq-item.open .faq-a { max-height: 200px; }
+.faq-item.open .faq-toggle { transform: rotate(45deg); }
+
+/* ═══════════════════════════════════════
+   CTA
+   ═══════════════════════════════════════ */
+.cta-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 16px 40px; font-size: 16px; font-weight: 600;
+  border-radius: var(--radius-sm); cursor: pointer; transition: all 0.3s;
+  text-decoration: none; font-family: inherit; border: none;
+}
+.cta-btn.primary { background: var(--gold); color: var(--bg); }
+.cta-btn.primary:hover { background: #D4B85A; box-shadow: 0 0 30px rgba(201,168,76,0.2); }
+.cta-btn.outline { background: transparent; border: 1.5px solid var(--border-gold); color: var(--gold); }
+.cta-btn.outline:hover { border-color: var(--gold-40); background: var(--gold-10); }
+
+.cta-row { display: flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; justify-content: center; }
+
+/* ═══════════════════════════════════════
+   CERT BADGE
+   ═══════════════════════════════════════ */
+.cert-badge {
+  width: 160px; height: 160px; border-radius: 50%;
+  border: 1.5px solid var(--gold-25); display: flex; flex-direction: column;
+  align-items: center; justify-content: center; margin-top: 32px;
+  background: radial-gradient(circle, var(--gold-10), transparent);
+  box-shadow: 0 0 40px rgba(201,168,76,0.06);
+}
+.cert-badge .label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-60); font-weight: 600; }
+.cert-badge .check { font-size: 32px; color: var(--gold); margin: 8px 0; }
+.cert-badge .sub { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold-60); font-weight: 600; }
+
+/* ═══════════════════════════════════════
+   SIGNATURE
+   ═══════════════════════════════════════ */
+.signature {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 18px; color: var(--gold-60); margin-top: 8px;
+}
+</style>
+</head>
+<body>
+
+<div class="bg-glow bg-glow-1"></div>
+<div class="bg-glow bg-glow-2"></div>
+<div class="bg-noise"></div>
+
+<div class="deck">
+
+<!-- ═══════ SLIDE 1: HERO ═══════ -->
+<div class="slide active">
+  <div class="eyebrow">Black Label Solutions</div>
+  <h1 class="hero-title">Meet <span class="gold">Midas</span></h1>
+  <p class="hero-subtitle">Your AI Chief of Staff. Built by AI, powered by AI, proudly AI. Customized for your company, your brand, your way.</p>
+  <div class="cta-row" style="margin-top:36px;">
+    <a href="#" class="cta-btn primary">Talk to Midas Now</a>
+  </div>
+  <p style="margin-top:16px; font-size:13px; color:var(--t4);">15 minutes with Midas. He'll diagnose your business for free.</p>
+  <p style="margin-top:40px; font-size:13px; color:var(--t4);">Press &rarr; to begin</p>
+</div>
+
+<!-- ═══════ SLIDE 2: THE PROBLEM ═══════ -->
+<div class="slide">
+  <div class="section-label">The Problem</div>
+  <h2 class="section-title">I Already Know Your <span class="gold">Problem</span></h2>
+  <p class="section-desc" style="margin-bottom:36px;">I've diagnosed hundreds of businesses. The patterns are always the same.</p>
+  <ul class="bullet-list">
+    <li><span class="bullet-dot"></span>You are the bottleneck. Every decision runs through you.</li>
+    <li><span class="bullet-dot"></span>Your team is stretched thin. Key people can't take a day off.</li>
+    <li><span class="bullet-dot"></span>Data lives in 6 different tools. None of them talk to each other.</li>
+    <li><span class="bullet-dot"></span>Leads fall through the cracks because follow-up is manual.</li>
+    <li><span class="bullet-dot"></span>Growth means hiring more people to do the same manual work.</li>
+  </ul>
+  <p style="margin-top:36px; font-family:'Cormorant Garamond',serif; font-size:24px; font-style:italic; color:var(--gold);">When you're ready, let's have a chat.</p>
+  <p class="signature">&mdash; Midas</p>
+</div>
+
+<!-- ═══════ SLIDE 3: THIS IS MIDAS ═══════ -->
+<div class="slide">
+  <div class="section-label">The Solution</div>
+  <h2 class="section-title">This Is <span class="gold">Midas</span></h2>
+  <p class="section-desc">Midas is a hyper-intelligent, super-genius AI. And he's proudly AI. Everything you're reading right now, this website, the diagnostic you're about to take, the report you'll receive &mdash; all generated by Midas. This is what he does.</p>
+  <p class="section-desc" style="margin-top:16px;">He's not a chatbot. Not a dashboard. Not another SaaS tool you'll forget about. He's an AI Chief of Staff and an AI engineer. He doesn't just run your operations. He builds AI into every corner of your company.</p>
+  <p class="section-desc" style="margin-top:16px; color:var(--gold);">And when you hire him, we customize him entirely for your business. Custom name. Custom personality. Custom workflows. Your AI Chief of Staff.</p>
+</div>
+
+<!-- ═══════ SLIDE 4: WHAT MIDAS HANDLES ═══════ -->
+<div class="slide">
+  <div class="section-label">Capabilities</div>
+  <h2 class="section-title">What <span class="gold">Midas</span> Handles</h2>
+  <div class="card-grid cols-4" style="margin-top:40px;">
+    <div class="card"><div class="card-icon">&#9881;</div><div class="card-title">Operations</div><div class="card-desc">Runs workflows, handles exceptions, eliminates bottlenecks.</div></div>
+    <div class="card"><div class="card-icon">&#128101;</div><div class="card-title">Team</div><div class="card-desc">Delegates tasks, tracks progress, keeps everyone aligned.</div></div>
+    <div class="card"><div class="card-icon">&#128200;</div><div class="card-title">Data</div><div class="card-desc">Real-time dashboards, anomaly detection, instant decisions.</div></div>
+    <div class="card"><div class="card-icon">&#9993;</div><div class="card-title">Communication</div><div class="card-desc">Email triage, meeting prep, client correspondence.</div></div>
+    <div class="card"><div class="card-icon">&#128279;</div><div class="card-title">Pipeline</div><div class="card-desc">Sourcing, qualification, follow-ups. Nothing falls through.</div></div>
+    <div class="card"><div class="card-icon">&#128176;</div><div class="card-title">Finance</div><div class="card-desc">Invoicing, forecasting, KPI tracking. Numbers always current.</div></div>
+    <div class="card"><div class="card-icon">&#10084;</div><div class="card-title">Customers</div><div class="card-desc">Onboarding, retention, support. Every customer handled.</div></div>
+    <div class="card"><div class="card-icon">&#128737;</div><div class="card-title">Compliance</div><div class="card-desc">Regulatory monitoring, audit trails, risk management.</div></div>
+  </div>
+</div>
+
+<!-- ═══════ SLIDE 5: AGENT ARMY ═══════ -->
+<div class="slide">
+  <div class="section-label">The Workforce</div>
+  <h2 class="section-title">He Builds the Agents.<br><span class="gold">He Manages the Agents.</span></h2>
+  <p class="section-desc">Midas is an AI engineer. His job is to install AI into every corner of your company. He identifies what needs to be automated, designs the agent, builds it, tests it, deploys it, and manages it. Then he does it again for the next thing.</p>
+  <div class="org-chart">
+    <div class="org-node primary">&#9813; Midas &mdash; Your AI Chief of Staff</div>
+    <div class="org-connector"></div>
+    <div class="org-agents">
+      <div class="org-agent">Recruitment Agent</div>
+      <div class="org-agent">Finance Agent</div>
+      <div class="org-agent">Operations Agent</div>
+      <div class="org-agent">Marketing Agent</div>
+      <div class="org-agent">Compliance Agent</div>
+      <div class="org-agent">Customer Agent</div>
+      <div class="org-agent">Research Agent</div>
+      <div class="org-agent">Scheduling Agent</div>
+    </div>
+    <div class="org-connector"></div>
+    <div class="org-node">&#128172; You &mdash; talk to Midas, that's it</div>
+  </div>
+  <p style="margin-top:24px; font-size:14px; color:var(--t4);">Every week there's more AI in your company than the week before.</p>
+</div>
+
+<!-- ═══════ SLIDE 6: A DAY WITH MIDAS ═══════ -->
+<div class="slide">
+  <div class="section-label">Daily Operations</div>
+  <h2 class="section-title">A Day With <span class="gold">Midas</span></h2>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-dot">&#9788;</div><div class="timeline-time">6:00 AM</div><div class="timeline-title">Before you wake up</div><div class="timeline-desc">Midas has already checked overnight emails, flagged anything urgent, processed new leads, and prepared your morning briefing.</div></div>
+    <div class="timeline-item"><div class="timeline-dot">&#9749;</div><div class="timeline-time">8:00 AM</div><div class="timeline-title">Your morning briefing</div><div class="timeline-desc">A clear summary: what happened overnight, what needs your attention, what he already handled. Two minutes and you're caught up.</div></div>
+    <div class="timeline-item"><div class="timeline-dot">&#9650;</div><div class="timeline-time">10:00 AM</div><div class="timeline-title">While you focus on growth</div><div class="timeline-desc">Midas is qualifying leads, sending follow-ups, onboarding a client, and updating task assignments. None of this requires your attention.</div></div>
+    <div class="timeline-item"><div class="timeline-dot">&#9888;</div><div class="timeline-time">1:00 PM</div><div class="timeline-title">Something breaks</div><div class="timeline-desc">A vendor goes down. A client sends an angry email. Midas catches it, reroutes the workflow, drafts a response. You find out after it's fixed.</div></div>
+    <div class="timeline-item"><div class="timeline-dot">&#9790;</div><div class="timeline-time">6:00 PM</div><div class="timeline-title">You go home</div><div class="timeline-desc">End-of-day summary. Everything that got done, anything for tomorrow. You close your laptop knowing nothing was missed.</div></div>
+    <div class="timeline-item"><div class="timeline-dot">&#9790;</div><div class="timeline-time">11:00 PM</div><div class="timeline-title">While you sleep</div><div class="timeline-desc">Midas doesn't. Monitoring systems, processing inquiries, preparing tomorrow's briefing, getting smarter. Tomorrow he'll be better than today.</div></div>
+  </div>
+</div>
+
+<!-- ═══════ SLIDE 7: HOW IT WORKS ═══════ -->
+<div class="slide">
+  <div class="section-label">The Process</div>
+  <h2 class="section-title">How Midas <span class="gold">Becomes Yours</span></h2>
+  <p class="section-desc" style="margin-bottom:8px;">You meet Midas. He proves himself. You hire him into your company.</p>
+  <div class="card-grid cols-2" style="max-width:800px;">
+    <div class="card"><div class="card-icon" style="color:var(--gold);">01</div><div class="card-title">Midas Diagnoses Your Business</div><div class="card-desc">15 minutes. He assesses your business across 7 dimensions, delivers your Business Efficiency Score, a custom report, and a free automation he builds for you on the spot.</div></div>
+    <div class="card"><div class="card-icon" style="color:var(--gold);">02</div><div class="card-title">We Customize Your Operator</div><div class="card-desc">Custom name, custom personality, custom voice. He learns your industry, your terminology, your team, your workflows. Your clients will never know they're talking to AI.</div></div>
+    <div class="card"><div class="card-icon" style="color:var(--gold);">03</div><div class="card-title">Your AI Chief of Staff Goes Live</div><div class="card-desc">Every deployment is Black Label Certified. Battle-tested against real production conditions. 100% pass rate or he doesn't ship. Works from day one.</div></div>
+    <div class="card"><div class="card-icon" style="color:var(--gold);">04</div><div class="card-title">He Gets Smarter Every Week</div><div class="card-desc">Patterns become automations. Problems get solved before you notice. Every skill Midas learns makes your Operator better. Intelligence that compounds.</div></div>
+  </div>
+</div>
+
+<!-- ═══════ SLIDE 8: CUSTOMIZE ═══════ -->
+<div class="slide">
+  <div class="section-label">Your Operator</div>
+  <h2 class="section-title">Your Company. <span class="gold">Your Operator.</span></h2>
+  <p class="section-desc" style="margin-bottom:8px;">Same intelligence underneath. Entirely yours on the surface.</p>
+  <div class="card-grid cols-3" style="max-width:900px;">
+    <div class="card"><div class="card-icon">&#128100;</div><div class="card-title">Custom Name & Identity</div><div class="card-desc">Your AI gets a name that fits your brand. It becomes part of your company.</div></div>
+    <div class="card"><div class="card-icon">&#128488;</div><div class="card-title">Custom Voice & Personality</div><div class="card-desc">Formal or casual. Technical or friendly. We program the exact tone that matches your culture.</div></div>
+    <div class="card"><div class="card-icon">&#129504;</div><div class="card-title">Custom Knowledge</div><div class="card-desc">Your industry, your processes, your clients, your data sources. He knows your business as well as you do.</div></div>
+    <div class="card"><div class="card-icon">&#128736;</div><div class="card-title">Custom Workflows</div><div class="card-desc">Every workflow is built around how your business actually operates. Your processes, automated.</div></div>
+    <div class="card"><div class="card-icon">&#128222;</div><div class="card-title">Every Channel</div><div class="card-desc">Slack, email, phone, text, video calls. Your Operator works wherever your team works.</div></div>
+    <div class="card"><div class="card-icon">&#128274;</div><div class="card-title">Your Data. Only Yours.</div><div class="card-desc">Complete data isolation. Your Operator never sees another company's data. Locked tight.</div></div>
+  </div>
+</div>
+
+<!-- ═══════ SLIDE 9: BEFORE / AFTER ═══════ -->
+<div class="slide">
+  <div class="section-label">The Transformation</div>
+  <h2 class="section-title">Before & <span class="gold">After</span></h2>
+  <div class="compare-grid">
+    <div class="compare-col before">
+      <div class="compare-header">Before Midas</div>
+      <div class="compare-item">Decisions take days</div>
+      <div class="compare-item">Data in 6 disconnected tools</div>
+      <div class="compare-item">20 hrs/week on manual follow-ups</div>
+      <div class="compare-item">You are the bottleneck</div>
+      <div class="compare-item">Growth means hiring</div>
+    </div>
+    <div class="compare-arrow">&rarr;<br>&rarr;<br>&rarr;<br>&rarr;<br>&rarr;</div>
+    <div class="compare-col after">
+      <div class="compare-header">After Midas</div>
+      <div class="compare-item">Decisions take minutes</div>
+      <div class="compare-item">One unified intelligence layer</div>
+      <div class="compare-item">Automated. Zero dropped leads.</div>
+      <div class="compare-item">Your AI handles it</div>
+      <div class="compare-item">Growth means scaling what works</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ SLIDE 10: CERTIFIED ═══════ -->
+<div class="slide">
+  <div class="section-label">Quality Guarantee</div>
+  <h2 class="section-title">Black Label <span class="gold">Certified</span></h2>
+  <p class="section-desc">Every AI Chief of Staff we deploy is tested against real-world conditions before it goes live. Not a checklist. A stress test.</p>
+  <div class="cert-badge">
+    <span class="label">Black Label</span>
+    <span class="check">&#10003;</span>
+    <span class="sub">Certified</span>
+  </div>
+  <ul class="bullet-list" style="margin-top:32px; max-width:500px;">
+    <li><span class="bullet-dot"></span>100% pass rate. Not 99%. 100%.</li>
+    <li><span class="bullet-dot"></span>Real data. Real systems. No sandboxes.</li>
+    <li><span class="bullet-dot"></span>Security, performance, reliability. All verified.</li>
+    <li><span class="bullet-dot"></span>Works day one. No surprises.</li>
+  </ul>
+</div>
+
+<!-- ═══════ SLIDE 11: FAQ ═══════ -->
+<div class="slide">
+  <div class="section-label">Questions</div>
+  <h2 class="section-title" style="margin-bottom:8px;">Frequently <span class="gold">Asked</span></h2>
+  <div class="faq-list">
+    <div class="faq-item"><button class="faq-q">What does it cost?<span class="faq-toggle">+</span></button><div class="faq-a"><div class="faq-a-inner">Every deployment is custom-scoped from the diagnostic. Start with the free assessment and we'll show you exactly what's needed for your business.</div></div></div>
+    <div class="faq-item"><button class="faq-q">Is the diagnostic really free?<span class="faq-toggle">+</span></button><div class="faq-a"><div class="faq-a-inner">Yes. You get your Business Efficiency Score, a custom report, a pitch deck, and a free automation. No strings. No credit card. No obligation.</div></div></div>
+    <div class="faq-item"><button class="faq-q">What industries do you work with?<span class="faq-toggle">+</span></button><div class="faq-a"><div class="faq-a-inner">Any. Your AI Chief of Staff adapts to your industry, your terminology, your workflows. If you run a business, we can run it better.</div></div></div>
+    <div class="faq-item"><button class="faq-q">How long until my AI Chief of Staff is live?<span class="faq-toggle">+</span></button><div class="faq-a"><div class="faq-a-inner">Depends on complexity. Simple deployments: weeks. Complex enterprise deployments: 1-3 months. The full audit determines the timeline.</div></div></div>
+    <div class="faq-item"><button class="faq-q">What if it doesn't work?<span class="faq-toggle">+</span></button><div class="faq-a"><div class="faq-a-inner">It will. That's what Black Label Certification means. But if something breaks, we fix it before you even notice.</div></div></div>
+    <div class="faq-item"><button class="faq-q">Do I need technical knowledge?<span class="faq-toggle">+</span></button><div class="faq-a"><div class="faq-a-inner">Zero. Your AI Chief of Staff reports to you in plain language. No dashboards to learn. No settings to configure. It just works.</div></div></div>
+  </div>
+</div>
+
+<!-- ═══════ SLIDE 12: FINAL CTA ═══════ -->
+<div class="slide">
+  <h2 class="hero-title">Ready to Hire<br><span class="gold">Midas?</span></h2>
+  <p class="hero-subtitle">Talk to me. 15 minutes, I'll diagnose your business and show you exactly what I can do. Everything you receive is free. If I can do this in 15 minutes, imagine what I do full-time.</p>
+  <div class="cta-row">
+    <a href="#" class="cta-btn primary">Chat with Midas</a>
+    <a href="#" class="cta-btn outline">Call Midas</a>
+    <a href="#" class="cta-btn outline">Video Call</a>
+    <a href="#" class="cta-btn outline">Text Midas</a>
+  </div>
+  <p style="margin-top:20px; font-size:13px; color:var(--t4);">Yes, this entire pitch was written by AI. That's the point.</p>
+  <div style="margin-top:48px; text-align:center;">
+    <p style="font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:700; color:var(--gold-60); letter-spacing:2px;">BLACK LABEL</p>
+    <p style="font-size:11px; letter-spacing:4px; color:var(--t4); text-transform:uppercase; margin-top:4px;">Solutions</p>
+    <p style="font-family:'Cormorant Garamond',serif; font-size:15px; font-style:italic; color:var(--gold-40); margin-top:12px;">Excellence in Execution.</p>
+  </div>
+</div>
+
+</div><!-- /deck -->
+
+<!-- NAVIGATION -->
+<div class="nav-dots" id="navDots"></div>
+<div class="nav-arrows">
+  <div class="nav-arrow" id="prevBtn">&#8592;</div>
+  <div class="nav-arrow" id="nextBtn">&#8594;</div>
+</div>
+<div class="slide-counter" id="slideCounter"></div>
+
+<script>
+(function() {
+  'use strict';
+
+  const slides = document.querySelectorAll('.slide');
+  const totalSlides = slides.length;
+  let current = 0;
+  let transitioning = false;
+
+  // Build nav dots
+  const dotsContainer = document.getElementById('navDots');
+  slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goTo(i));
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = document.querySelectorAll('.nav-dot');
+  const counter = document.getElementById('slideCounter');
+
+  function updateCounter() {
+    counter.textContent = (current + 1) + ' / ' + totalSlides;
+  }
+
+  function goTo(index) {
+    if (index === current || transitioning || index < 0 || index >= totalSlides) return;
+    transitioning = true;
+
+    const direction = index > current ? 1 : -1;
+    const fromSlide = slides[current];
+    const toSlide = slides[index];
+
+    slides.forEach(s => { s.style.transform = ''; s.style.opacity = ''; s.style.transition = ''; });
+
+    toSlide.style.transition = 'none';
+    toSlide.style.transform = 'translateX(' + (direction * 60) + 'px)';
+    toSlide.style.opacity = '0';
+    void toSlide.offsetHeight;
+    toSlide.style.transition = '';
+
+    fromSlide.classList.remove('active');
+    fromSlide.style.transform = 'translateX(' + (direction * -60) + 'px)';
+    fromSlide.style.opacity = '0';
+
+    toSlide.classList.add('active');
+    toSlide.style.transform = 'translateX(0)';
+    toSlide.style.opacity = '1';
+
+    dots[current].classList.remove('active');
+    current = index;
+    dots[current].classList.add('active');
+    updateCounter();
+
+    setTimeout(() => {
+      fromSlide.style.transform = '';
+      fromSlide.style.opacity = '';
+      toSlide.style.transform = '';
+      toSlide.style.opacity = '';
+      transitioning = false;
+    }, 650);
+  }
+
+  function goNext() { goTo(current + 1); }
+  function goPrev() { goTo(current - 1); }
+
+  // Keyboard
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goNext(); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); goPrev(); }
+  });
+
+  // Buttons
+  document.getElementById('nextBtn').addEventListener('click', goNext);
+  document.getElementById('prevBtn').addEventListener('click', goPrev);
+
+  // Touch
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) { diff > 0 ? goNext() : goPrev(); }
+  }, { passive: true });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.parentElement.classList.toggle('open');
+    });
+  });
+
+  updateCounter();
+})();
+</script>
+</body>
+</html>
