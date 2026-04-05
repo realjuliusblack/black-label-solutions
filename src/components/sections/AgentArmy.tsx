@@ -21,9 +21,9 @@ export default function AgentArmy() {
       <div className="grid md:grid-cols-2 gap-16 items-start">
         <div>
           <h2 className="font-[family-name:var(--font-cormorant)] text-4xl md:text-5xl font-bold text-cream mb-8">
-            One Conversation.
+            He Builds the Agents.
             <br />
-            <span className="text-gold">An Entire Workforce.</span>
+            <span className="text-gold">He Manages the Agents.</span>
           </h2>
 
           <div className="space-y-5 font-[family-name:var(--font-inter)] text-cream-dim text-base leading-relaxed font-light">
@@ -33,9 +33,11 @@ export default function AgentArmy() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              You talk to Midas. That&apos;s it. One point of contact.
-              But behind the scenes, Midas builds, deploys, and manages
-              an entire team of specialized AI agents for your business.
+              Midas is an AI engineer. His job is to install AI into every
+              corner of your company. He doesn&apos;t just run one process.
+              He identifies what needs to be automated, designs the agent,
+              builds it, tests it, deploys it, and manages it. Then he
+              does it again for the next thing.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 10 }}
@@ -45,9 +47,9 @@ export default function AgentArmy() {
             >
               Need recruitment handled? Midas builds a Recruitment Agent.
               Finance getting messy? He spins up a Finance Agent. Your
-              operations need monitoring around the clock? There&apos;s an
-              agent for that. Each one is a specialist. Each one reports
-              to Midas. Midas reports to you.
+              operations need monitoring around the clock? He builds that
+              too. Each agent is a specialist. Each one reports to Midas.
+              Midas reports to you.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 10 }}
@@ -56,9 +58,9 @@ export default function AgentArmy() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="text-gold/90"
             >
-              You don&apos;t manage the agents. You don&apos;t even know
-              how many are running. You just talk to your AI Chief of
-              Staff, and the work gets done.
+              You talk to one AI. Behind the scenes, an entire workforce
+              is building, running, and improving your business. Every
+              week there&apos;s more AI in your company than the week before.
             </motion.p>
           </div>
         </div>

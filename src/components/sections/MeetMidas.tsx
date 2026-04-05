@@ -58,9 +58,10 @@ export default function MeetMidas() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             Midas is not a chatbot. Not a dashboard. Not another SaaS tool
-            you&apos;ll forget about in a month. He&apos;s an AI Chief of Staff.
-            He runs operations. Manages pipelines. Coordinates teams. Monitors
-            your data. Reports to you with insights, not just numbers.
+            you&apos;ll forget about in a month. He&apos;s an AI Chief of Staff
+            and an AI engineer. He doesn&apos;t just run your operations. He
+            builds AI into every corner of your company. New process?
+            He automates it. New problem? He builds an agent to solve it.
             He works 24/7. He never forgets. He gets smarter every single day.
           </motion.p>
           <motion.p

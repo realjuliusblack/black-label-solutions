@@ -3,6 +3,7 @@ import Hero from "@/components/sections/Hero";
 import Problem from "@/components/sections/Problem";
 import MeetMidas from "@/components/sections/MeetMidas";
 import AgentArmy from "@/components/sections/AgentArmy";
+import DayInLife from "@/components/sections/DayInLife";
 import HowItWorks from "@/components/sections/HowItWorks";
 import Customize from "@/components/sections/Customize";
 import FreeDiagnostic from "@/components/sections/FreeDiagnostic";
@@ -22,6 +23,7 @@ export default function Home() {
         <Problem />
         <MeetMidas />
         <AgentArmy />
+        <DayInLife />
         <HowItWorks />
         <Customize />
         <FreeDiagnostic />
