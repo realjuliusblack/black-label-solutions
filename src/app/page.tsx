@@ -2,6 +2,7 @@ import Nav from "@/components/ui/Nav";
 import Hero from "@/components/sections/Hero";
 import Problem from "@/components/sections/Problem";
 import MeetMidas from "@/components/sections/MeetMidas";
+import AgentArmy from "@/components/sections/AgentArmy";
 import HowItWorks from "@/components/sections/HowItWorks";
 import Customize from "@/components/sections/Customize";
 import FreeDiagnostic from "@/components/sections/FreeDiagnostic";
@@ -20,6 +21,7 @@ export default function Home() {
         <Hero />
         <Problem />
         <MeetMidas />
+        <AgentArmy />
         <HowItWorks />
         <Customize />
         <FreeDiagnostic />
