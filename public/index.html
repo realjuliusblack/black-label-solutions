@@ -62,11 +62,12 @@ html, body {
   position: absolute; inset: 0;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   padding: 60px 80px;
-  opacity: 0; transform: translateX(60px); pointer-events: none;
-  transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
-  will-change: opacity, transform;
+  opacity: 0; transform: translateX(40px) scale(0.97); filter: blur(4px);
+  pointer-events: none;
+  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1), filter 0.7s cubic-bezier(0.22,1,0.36,1);
+  will-change: opacity, transform, filter;
 }
-.slide.active { opacity: 1; transform: translateX(0); pointer-events: auto; }
+.slide.active { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); pointer-events: auto; }
 @media (max-width: 768px) { .slide { padding: 40px 24px; } }
 
 /* ═══════════════════════════════════════
@@ -402,8 +403,8 @@ html, body {
   <div class="cta-row">
     <a href="#" class="cta-btn primary">Talk to Midas Now</a>
   </div>
-  <p style="margin-top:16px; font-size:13px; color:var(--gold-40);">15 minutes with Midas. He'll diagnose your business for free.</p>
-  <p style="margin-top:48px; font-size:13px; color:var(--gold-40);">Press &rarr; to begin</p>
+  <p class="gold-grad" style="margin-top:16px; font-size:14px;">15 minutes with Midas. He'll diagnose your business for free.</p>
+  <p class="gold-grad" style="margin-top:48px; font-size:14px;">Press &rarr; to begin</p>
 </div>
 
 <!-- ═══════ 2: THE PROBLEM ═══════ -->
@@ -627,27 +628,30 @@ html, body {
     transitioning = true;
     const direction = index > current ? 1 : -1;
     const from = slides[current], to = slides[index];
-    slides.forEach(s => { s.style.transform = ''; s.style.opacity = ''; s.style.transition = ''; });
+    slides.forEach(s => { s.style.transform = ''; s.style.opacity = ''; s.style.filter = ''; s.style.transition = ''; });
     to.style.transition = 'none';
-    to.style.transform = 'translateX(' + (direction * 60) + 'px)';
+    to.style.transform = 'translateX(' + (direction * 40) + 'px) scale(0.97)';
     to.style.opacity = '0';
+    to.style.filter = 'blur(4px)';
     void to.offsetHeight;
     to.style.transition = '';
     from.classList.remove('active');
-    from.style.transform = 'translateX(' + (direction * -60) + 'px)';
+    from.style.transform = 'translateX(' + (direction * -40) + 'px) scale(0.97)';
     from.style.opacity = '0';
+    from.style.filter = 'blur(4px)';
     to.classList.add('active');
-    to.style.transform = 'translateX(0)';
+    to.style.transform = 'translateX(0) scale(1)';
     to.style.opacity = '1';
+    to.style.filter = 'blur(0)';
     dots[current].classList.remove('active');
     current = index;
     dots[current].classList.add('active');
     updateCounter();
     setTimeout(() => {
-      from.style.transform = ''; from.style.opacity = '';
-      to.style.transform = ''; to.style.opacity = '';
+      from.style.transform = ''; from.style.opacity = ''; from.style.filter = '';
+      to.style.transform = ''; to.style.opacity = ''; to.style.filter = '';
       transitioning = false;
-    }, 650);
+    }, 750);
   }
 
   document.addEventListener('keydown', e => {
