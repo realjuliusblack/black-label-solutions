@@ -89,6 +89,8 @@ html, body {
 }
 .bg-glow-1 { top: -200px; left: -100px; }
 .bg-glow-2 { bottom: -200px; right: -100px; top: auto; left: auto; }
+.bg-glow-3 { top: 40%; left: 50%; transform: translateX(-50%); width: 800px; height: 400px;
+  background: radial-gradient(ellipse, rgba(201,169,110,0.04) 0%, transparent 70%); }
 
 .slide-glow {
   background: radial-gradient(ellipse at center, rgba(201,169,110,0.04) 0%, transparent 60%);
@@ -159,9 +161,8 @@ html, body {
 }
 
 .section-desc {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(16px, 1.6vw, 20px); text-align: center; max-width: 580px; margin-top: 24px;
-  line-height: 1.9; font-weight: 400; font-style: italic; color: rgba(255,255,255,0.75);
+  font-size: clamp(16px, 1.5vw, 19px); text-align: left; max-width: 600px; margin-top: 20px;
+  line-height: 1.8; font-weight: 400; color: rgba(255,255,255,0.78);
 }
 
 /* ═══════════════════════════════════════
@@ -176,20 +177,28 @@ html, body {
 @media (max-width: 480px) { .card-grid.cols-4, .card-grid.cols-3, .card-grid.cols-2 { grid-template-columns: 1fr; } }
 
 .card {
-  background: var(--surface); border: 1px solid var(--border-gold);
-  border-radius: var(--radius); padding: 28px 24px;
+  background: linear-gradient(145deg, rgba(201,169,110,0.04), rgba(201,169,110,0.01));
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius); padding: 32px 28px;
   transition: all 0.4s ease; position: relative; overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(201,169,110,0.08);
 }
 .card::before {
-  content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-  width: 60%; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold-40), transparent);
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 10%, var(--gold-40) 50%, transparent 90%);
   opacity: 0; transition: opacity 0.4s ease;
 }
+.card::after {
+  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(circle at center, rgba(201,169,110,0.03), transparent 60%);
+  opacity: 0; transition: opacity 0.4s ease; pointer-events: none;
+}
 .card:hover::before { opacity: 1; }
+.card:hover::after { opacity: 1; }
 .card:hover {
   border-color: var(--gold-25); transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(201,169,110,0.06);
+  box-shadow: 0 12px 40px rgba(201,169,110,0.08), inset 0 1px 0 rgba(201,169,110,0.12);
 }
 
 .card-icon {
@@ -258,8 +267,10 @@ html, body {
   text-align: center; font-size: 15px; font-weight: 500;
 }
 .org-node.primary {
-  border-color: var(--gold-40); background: var(--gold-10); color: var(--gold);
-  box-shadow: 0 0 30px rgba(201,169,110,0.08);
+  border-color: var(--gold-40);
+  background: linear-gradient(135deg, rgba(201,169,110,0.12), rgba(201,169,110,0.04));
+  color: var(--gold);
+  box-shadow: 0 0 40px rgba(201,169,110,0.1), 0 0 80px rgba(201,169,110,0.04), inset 0 1px 0 rgba(201,169,110,0.15);
 }
 .org-connector { width: 1px; height: 20px; background: var(--gold-25); }
 .org-agents { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 700px; }
@@ -324,11 +335,16 @@ html, body {
 .bl-phase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; width: 100%; margin-top: 36px; }
 @media (max-width: 768px) { .bl-phase-grid { grid-template-columns: 1fr; } }
 .bl-phase {
-  padding: 20px 22px; border-radius: 12px;
-  background: rgba(201,169,110,0.03); border: 1px solid rgba(201,169,110,0.12);
-  transition: all 0.3s ease;
+  padding: 24px 24px; border-radius: 14px;
+  background: linear-gradient(145deg, rgba(201,169,110,0.05), rgba(201,169,110,0.015));
+  border: 1px solid rgba(201,169,110,0.12);
+  transition: all 0.4s ease;
+  box-shadow: inset 0 1px 0 rgba(201,169,110,0.06);
 }
-.bl-phase:hover { border-color: rgba(201,169,110,0.25); background: rgba(201,169,110,0.06); }
+.bl-phase:hover {
+  border-color: rgba(201,169,110,0.3); background: rgba(201,169,110,0.06);
+  box-shadow: 0 8px 30px rgba(201,169,110,0.05), inset 0 1px 0 rgba(201,169,110,0.1);
+}
 .bl-phase-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
 .bl-phase-text { font-size: 14px; line-height: 1.6; font-weight: 300; color: rgba(255,255,255,0.75); }
 
@@ -364,13 +380,14 @@ html, body {
   position: relative;
 }
 .cta-btn.primary {
-  background: linear-gradient(135deg, #c9a96e, #e8d5a3, #c9a96e);
+  background: linear-gradient(135deg, #a8884a 0%, #c9a96e 30%, #e8d5a3 50%, #c9a96e 70%, #a8884a 100%);
   color: var(--bg);
-  box-shadow: 0 4px 20px rgba(201,169,110,0.15), 0 0 40px rgba(201,169,110,0.08);
+  box-shadow: 0 4px 20px rgba(201,169,110,0.2), 0 0 50px rgba(201,169,110,0.1), inset 0 1px 0 rgba(255,255,255,0.2);
+  text-shadow: 0 1px 1px rgba(0,0,0,0.2);
 }
 .cta-btn.primary:hover {
-  box-shadow: 0 6px 30px rgba(201,169,110,0.3), 0 0 60px rgba(201,169,110,0.12);
-  transform: translateY(-1px);
+  box-shadow: 0 6px 30px rgba(201,169,110,0.35), 0 0 80px rgba(201,169,110,0.15), inset 0 1px 0 rgba(255,255,255,0.25);
+  transform: translateY(-2px);
 }
 .cta-btn.outline {
   background: transparent;
@@ -398,6 +415,7 @@ html, body {
 <div class="bg-grid"></div>
 <div class="bg-glow bg-glow-1"></div>
 <div class="bg-glow bg-glow-2"></div>
+<div class="bg-glow bg-glow-3"></div>
 
 <div class="deck">
 
