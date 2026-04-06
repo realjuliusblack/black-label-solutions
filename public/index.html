@@ -199,7 +199,11 @@ html, body {
   margin-bottom: 18px; font-size: 22px;
   color: var(--gold); text-shadow: 0 0 12px rgba(201,169,110,0.3);
 }
-.card-title { font-weight: 600; font-size: 17px; color: var(--t1); margin-bottom: 10px; }
+.card-title {
+  font-weight: 600; font-size: 17px; margin-bottom: 10px;
+  background: linear-gradient(135deg, #c9a96e 0%, #e8d5a3 40%, #c9a96e 60%, #a8884a 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
 .card-desc {
   font-size: 14px; line-height: 1.6; font-weight: 300;
   background: linear-gradient(135deg, #c9a96e 0%, #e8d5a3 40%, #c9a96e 60%, #a8884a 100%);
@@ -372,18 +376,32 @@ html, body {
    ═══════════════════════════════════════ */
 .cta-btn {
   display: inline-flex; align-items: center; justify-content: center;
-  padding: 16px 44px; font-size: 16px; font-weight: 600;
-  border-radius: 60px; cursor: pointer; transition: all 0.3s;
-  text-decoration: none; font-family: inherit; border: none; letter-spacing: 0.5px;
+  padding: 18px 48px; font-size: 14px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  border-radius: 2px; cursor: pointer; transition: all 0.4s ease;
+  text-decoration: none; font-family: inherit; border: none;
+  position: relative;
 }
 .cta-btn.primary {
-  background: var(--gold); color: var(--bg);
-  box-shadow: 0 0 30px rgba(201,169,110,0.2), 0 0 60px rgba(201,169,110,0.08);
+  background: linear-gradient(135deg, #c9a96e, #e8d5a3, #c9a96e);
+  color: var(--bg);
+  box-shadow: 0 4px 20px rgba(201,169,110,0.15), 0 0 40px rgba(201,169,110,0.08);
 }
-.cta-btn.primary:hover { background: #d4b87a; box-shadow: 0 0 40px rgba(201,169,110,0.35); }
-.cta-btn.outline { background: transparent; border: 1.5px solid var(--border-gold); color: var(--gold); }
-.cta-btn.outline:hover { border-color: var(--gold-40); background: var(--gold-10); }
-.cta-row { display: flex; gap: 14px; margin-top: 36px; flex-wrap: wrap; justify-content: center; }
+.cta-btn.primary:hover {
+  box-shadow: 0 6px 30px rgba(201,169,110,0.3), 0 0 60px rgba(201,169,110,0.12);
+  transform: translateY(-1px);
+}
+.cta-btn.outline {
+  background: transparent;
+  border: 1px solid var(--gold-25);
+  color: var(--gold);
+}
+.cta-btn.outline:hover {
+  border-color: var(--gold-60);
+  background: rgba(201,169,110,0.04);
+  box-shadow: 0 0 20px rgba(201,169,110,0.06);
+}
+.cta-row { display: flex; gap: 16px; margin-top: 36px; flex-wrap: wrap; justify-content: center; }
 
 /* ═══════════════════════════════════════
    SIGNATURE
@@ -442,16 +460,16 @@ html, body {
 <!-- ═══════ 4: CAPABILITIES ═══════ -->
 <div class="slide">
   <div class="section-label">Capabilities</div>
-  <h2 class="section-title">What Midas <span class="gold-grad">Handles</span></h2>
+  <h2 class="section-title">What Midas <span class="gold-grad">Runs For You</span></h2>
   <div class="card-grid cols-4">
-    <div class="card"><div class="card-icon">&#9881;</div><div class="card-title">Operations</div><div class="card-desc">Runs workflows, handles exceptions, eliminates bottlenecks.</div></div>
-    <div class="card"><div class="card-icon">&#128101;</div><div class="card-title">Team</div><div class="card-desc">Delegates tasks, tracks progress, keeps everyone aligned.</div></div>
-    <div class="card"><div class="card-icon">&#128200;</div><div class="card-title">Data</div><div class="card-desc">Real-time dashboards, anomaly detection, instant decisions.</div></div>
-    <div class="card"><div class="card-icon">&#9993;</div><div class="card-title">Communication</div><div class="card-desc">Email triage, meeting prep, client correspondence.</div></div>
-    <div class="card"><div class="card-icon">&#128279;</div><div class="card-title">Pipeline</div><div class="card-desc">Sourcing, qualification, follow-ups. Nothing falls through.</div></div>
-    <div class="card"><div class="card-icon">&#128176;</div><div class="card-title">Finance</div><div class="card-desc">Invoicing, forecasting, KPI tracking. Numbers always current.</div></div>
-    <div class="card"><div class="card-icon">&#10084;</div><div class="card-title">Customers</div><div class="card-desc">Onboarding, retention, support. Every customer handled.</div></div>
-    <div class="card"><div class="card-icon">&#128737;</div><div class="card-title">Compliance</div><div class="card-desc">Regulatory monitoring, audit trails, risk management.</div></div>
+    <div class="card"><div class="card-title">Operations</div><div class="card-desc">Your entire workflow engine. Exception handling, process orchestration, zero bottlenecks. He runs the machine.</div></div>
+    <div class="card"><div class="card-title">Team Management</div><div class="card-desc">Task delegation, progress tracking, standup notes, coverage when someone's out. Your team stays aligned without you managing it.</div></div>
+    <div class="card"><div class="card-title">Intelligence</div><div class="card-desc">Real-time KPI monitoring, anomaly detection, trend analysis. Decisions backed by data you never had to pull.</div></div>
+    <div class="card"><div class="card-title">Communications</div><div class="card-desc">Email triage, client correspondence, meeting prep, follow-up scheduling. Nothing gets lost. Nothing gets late.</div></div>
+    <div class="card"><div class="card-title">Revenue Pipeline</div><div class="card-desc">Lead sourcing, qualification scoring, pipeline velocity tracking. From first contact to closed deal, fully managed.</div></div>
+    <div class="card"><div class="card-title">Financial Control</div><div class="card-desc">Invoicing, cash flow forecasting, expense tracking, margin analysis. Your numbers are always current. Always accurate.</div></div>
+    <div class="card"><div class="card-title">Client Success</div><div class="card-desc">Onboarding automation, retention monitoring, proactive outreach, satisfaction tracking. Every client feels handled.</div></div>
+    <div class="card"><div class="card-title">Risk & Compliance</div><div class="card-desc">Regulatory monitoring, audit trails, credential tracking, deadline enforcement. Sleep at night knowing nothing slipped.</div></div>
   </div>
 </div>
 
@@ -479,21 +497,7 @@ html, body {
   <p style="margin-top:20px; font-size:14px; color:var(--gold-40);">Every week there's more AI in your company than the week before.</p>
 </div>
 
-<!-- ═══════ 6: A DAY WITH MIDAS ═══════ -->
-<div class="slide">
-  <div class="section-label">Daily Operations</div>
-  <h2 class="section-title">A Day With <span class="gold-grad">Midas</span></h2>
-  <div class="timeline">
-    <div class="timeline-item"><div class="timeline-dot">&#9788;</div><div class="timeline-time">6 AM</div><div class="timeline-title">Before you wake up</div><div class="timeline-desc">Overnight emails checked, urgent items flagged, new leads processed, morning briefing prepared.</div></div>
-    <div class="timeline-item"><div class="timeline-dot">&#9749;</div><div class="timeline-time">8 AM</div><div class="timeline-title">Your morning briefing</div><div class="timeline-desc">Clear summary: what happened, what needs you, what he already handled. Two minutes and you're caught up.</div></div>
-    <div class="timeline-item"><div class="timeline-dot">&#9650;</div><div class="timeline-time">10 AM</div><div class="timeline-title">While you focus on growth</div><div class="timeline-desc">Qualifying leads, sending follow-ups, onboarding clients, updating tasks. None of it requires you.</div></div>
-    <div class="timeline-item"><div class="timeline-dot">&#9888;</div><div class="timeline-time">1 PM</div><div class="timeline-title">Something breaks</div><div class="timeline-desc">Vendor goes down, angry client email, sick employee. Midas catches all three, fixes them. You find out after.</div></div>
-    <div class="timeline-item"><div class="timeline-dot">&#9790;</div><div class="timeline-time">6 PM</div><div class="timeline-title">You go home</div><div class="timeline-desc">End-of-day summary. Everything done, nothing missed. Close your laptop with confidence.</div></div>
-    <div class="timeline-item"><div class="timeline-dot">&#9733;</div><div class="timeline-time">11 PM</div><div class="timeline-title">While you sleep</div><div class="timeline-desc">Midas doesn't. Monitoring, processing, preparing tomorrow. Getting smarter every single day.</div></div>
-  </div>
-</div>
-
-<!-- ═══════ 7: HOW IT WORKS ═══════ -->
+<!-- ═══════ 6: HOW IT WORKS ═══════ -->
 <div class="slide slide-glow">
   <div class="section-label">The Process</div>
   <h2 class="section-title">How Midas <span class="gold-grad">Becomes Yours</span></h2>
