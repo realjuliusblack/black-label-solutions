@@ -45,10 +45,10 @@ export default function Problem() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.6 }}
-        className="mt-16 font-[family-name:var(--font-cormorant)] text-2xl md:text-3xl text-gold italic"
+        className="mt-16 font-[family-name:var(--font-cormorant)] text-2xl md:text-3xl text-gold italic text-left max-w-2xl"
       >
         When you&apos;re ready, let&apos;s have a chat.
-        <span className="block text-lg text-gold/50 mt-2 not-italic font-[family-name:var(--font-inter)] font-light">&mdash; Midas</span>
+        <span className="block text-lg text-gold/50 mt-3 not-italic font-[family-name:var(--font-inter)] font-light tracking-wide">&mdash; Midas</span>
       </motion.p>
     </SectionWrapper>
   );
