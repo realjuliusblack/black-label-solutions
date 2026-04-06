@@ -14,7 +14,7 @@ export default function GoldButton({
   onClick,
 }: GoldButtonProps) {
   const base =
-    "inline-flex items-center justify-center px-8 py-3.5 font-[family-name:var(--font-inter)] font-semibold text-[15px] tracking-wide transition-all duration-300 rounded-md cursor-pointer";
+    "inline-flex items-center justify-center px-8 py-3.5 min-h-[48px] font-[family-name:var(--font-inter)] font-semibold text-[15px] tracking-wide transition-all duration-300 rounded-md cursor-pointer active:scale-[0.98]";
 
   const variants = {
     primary:

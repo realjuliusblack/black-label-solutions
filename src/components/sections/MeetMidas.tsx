@@ -27,13 +27,13 @@ const capabilities = [
 export default function MeetMidas() {
   return (
     <SectionWrapper id="meet-midas" className="bg-surface-elevated">
-      <div className="max-w-3xl mb-20">
+      <div className="max-w-3xl mb-12 md:mb-20">
         <motion.h2
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="font-[family-name:var(--font-cormorant)] text-4xl md:text-5xl font-bold text-cream mb-8"
+          className="font-[family-name:var(--font-cormorant)] text-[clamp(1.75rem,1.2rem+2.5vw,3rem)] font-bold text-cream mb-6 sm:mb-8"
         >
           This Is <span className="text-gold">Midas</span>
         </motion.h2>
@@ -89,7 +89,7 @@ export default function MeetMidas() {
         What Midas Handles
       </motion.h3>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {capabilities.map((cap, i) => (
           <motion.div
             key={cap.name}
@@ -97,11 +97,11 @@ export default function MeetMidas() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: i * 0.06 }}
-            className="bg-surface-card/80 border border-surface-border rounded-lg p-6 hover:border-gold-border/60 transition-all duration-300 group"
+            className="bg-surface-card/80 border border-surface-border rounded-lg p-4 sm:p-6 hover:border-gold-border/60 active:border-gold-border/60 transition-all duration-300 group"
           >
             <cap.icon
-              className="text-gold/80 mb-4 group-hover:text-gold transition-colors"
-              size={26}
+              className="text-gold/80 mb-3 sm:mb-4 group-hover:text-gold group-active:text-gold transition-colors"
+              size={22}
               strokeWidth={1.5}
             />
             <h4 className="font-[family-name:var(--font-inter)] font-semibold text-cream text-[15px] mb-2">

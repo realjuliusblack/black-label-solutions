@@ -12,6 +12,20 @@
   --bg-elevated: #1C1916;
   --cream: #F5F0E8;
   --cream-dim: #C8C0B0;
+
+  /* Fluid spacing scale */
+  --space-xs: clamp(0.5rem, 0.4rem + 0.25vw, 0.75rem);
+  --space-sm: clamp(0.75rem, 0.6rem + 0.5vw, 1.25rem);
+  --space-md: clamp(1.5rem, 1rem + 1.5vw, 2.5rem);
+  --space-lg: clamp(3rem, 2rem + 3vw, 5rem);
+  --space-xl: clamp(5rem, 3rem + 5vw, 10rem);
+
+  /* Luxury motion */
+  --ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 200ms;
+  --duration-base: 400ms;
+  --duration-slow: 600ms;
 }
 
 @theme inline {
@@ -36,6 +50,8 @@ body {
   background: #0C0B09;
   color: #F5F0E8;
   font-family: var(--font-inter), system-ui, sans-serif;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
 }
 
 ::selection {
@@ -47,3 +63,24 @@ body {
 ::-webkit-scrollbar-track { background: #060503; }
 ::-webkit-scrollbar-thumb { background: #7A6528; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #B8941F; }
+
+/* Tap highlight removal */
+* { -webkit-tap-highlight-color: transparent; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Active states for touch devices (replace hover) */
+@media (hover: none) {
+  .touch-active:active {
+    transform: scale(0.98);
+    transition: transform 100ms ease;
+  }
+}

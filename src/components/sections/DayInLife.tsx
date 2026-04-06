@@ -60,8 +60,8 @@ const timeline = [
 export default function DayInLife() {
   return (
     <SectionWrapper id="day-in-life" className="bg-surface-elevated">
-      <div className="text-center mb-20">
-        <h2 className="font-[family-name:var(--font-cormorant)] text-4xl md:text-5xl font-bold text-cream mb-5">
+      <div className="text-center mb-12 md:mb-20">
+        <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(1.75rem,1.2rem+2.5vw,3rem)] font-bold text-cream mb-5">
           A Day With <span className="text-gold">Midas</span>
         </h2>
         <p className="font-[family-name:var(--font-inter)] text-cream-dim/60 text-base font-light max-w-xl mx-auto">
@@ -82,10 +82,10 @@ export default function DayInLife() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.07 }}
-              className="relative pl-16 md:pl-20 py-5 group"
+              className="relative pl-14 sm:pl-16 md:pl-20 py-4 sm:py-5 group"
             >
               {/* Icon circle */}
-              <div className="absolute left-0 top-5 w-12 h-12 md:w-14 md:h-14 rounded-full border border-surface-border bg-surface-card/80 flex items-center justify-center group-hover:border-gold-border/50 transition-colors">
+              <div className="absolute left-0 top-5 w-11 h-11 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full border border-surface-border bg-surface-card/80 flex items-center justify-center group-hover:border-gold-border/50 group-active:border-gold-border/50 transition-colors">
                 <item.icon
                   className="text-gold/50 group-hover:text-gold/80 transition-colors"
                   size={18}
@@ -102,7 +102,7 @@ export default function DayInLife() {
               <h3 className="font-[family-name:var(--font-inter)] font-semibold text-cream text-base mt-1.5 mb-2">
                 {item.title}
               </h3>
-              <p className="text-cream-dim/60 text-sm leading-relaxed font-[family-name:var(--font-inter)] font-light">
+              <p className="text-cream-dim/60 text-[13px] sm:text-sm leading-relaxed font-[family-name:var(--font-inter)] font-light">
                 {item.desc}
               </p>
             </motion.div>

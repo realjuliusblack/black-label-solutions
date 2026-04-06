@@ -18,9 +18,9 @@ const agents = [
 export default function AgentArmy() {
   return (
     <SectionWrapper id="agents">
-      <div className="grid md:grid-cols-2 gap-16 items-start">
+      <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
         <div>
-          <h2 className="font-[family-name:var(--font-cormorant)] text-4xl md:text-5xl font-bold text-cream mb-8">
+          <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(1.75rem,1.2rem+2.5vw,3rem)] font-bold text-cream mb-6 sm:mb-8">
             He Builds the Agents.
             <br />
             <span className="text-gold">He Manages the Agents.</span>
@@ -75,10 +75,10 @@ export default function AgentArmy() {
           {/* Midas at top */}
           <div className="flex justify-center mb-8">
             <div className="relative">
-              <div className="w-20 h-20 rounded-full border-2 border-gold/60 bg-surface-card flex items-center justify-center">
-                <Crown className="text-gold" size={28} strokeWidth={1.5} />
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-gold/60 bg-surface-card flex items-center justify-center">
+                <Crown className="text-gold" size={24} strokeWidth={1.5} />
               </div>
-              <p className="text-center mt-3 font-[family-name:var(--font-inter)] font-semibold text-cream text-sm">
+              <p className="text-center mt-2.5 sm:mt-3 font-[family-name:var(--font-inter)] font-semibold text-cream text-sm">
                 Midas
               </p>
               <p className="text-center font-[family-name:var(--font-inter)] text-gold/50 text-xs">
@@ -104,7 +104,7 @@ export default function AgentArmy() {
                 className="bg-surface-card/50 border border-surface-border/40 rounded-lg py-3 px-4 flex items-center gap-3"
               >
                 <Bot className="text-gold/40 shrink-0" size={16} strokeWidth={1.5} />
-                <span className="text-cream-dim/70 text-xs font-[family-name:var(--font-inter)]">
+                <span className="text-cream-dim/70 text-[13px] sm:text-xs font-[family-name:var(--font-inter)]">
                   {agent}
                 </span>
               </motion.div>

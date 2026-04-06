@@ -40,8 +40,8 @@ const features = [
 export default function Customize() {
   return (
     <SectionWrapper id="customize" className="bg-surface-elevated">
-      <div className="text-center mb-20">
-        <h2 className="font-[family-name:var(--font-cormorant)] text-4xl md:text-5xl font-bold text-cream mb-5">
+      <div className="text-center mb-12 md:mb-20">
+        <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(1.75rem,1.2rem+2.5vw,3rem)] font-bold text-cream mb-5">
           Your Company. <span className="text-gold">Your Operator.</span>
         </h2>
         <p className="font-[family-name:var(--font-inter)] text-cream-dim/70 text-base md:text-lg font-light max-w-2xl mx-auto leading-relaxed">
@@ -52,7 +52,7 @@ export default function Customize() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         {features.map((f, i) => (
           <motion.div
             key={f.title}
@@ -60,7 +60,7 @@ export default function Customize() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: i * 0.07 }}
-            className="bg-surface-card/60 border border-surface-border/50 rounded-lg p-7 hover:border-gold-border/40 transition-all duration-300 group"
+            className="bg-surface-card/60 border border-surface-border/50 rounded-lg p-5 sm:p-7 hover:border-gold-border/40 active:border-gold-border/40 transition-all duration-300 group"
           >
             <f.icon
               className="text-gold/60 mb-5 group-hover:text-gold transition-colors"

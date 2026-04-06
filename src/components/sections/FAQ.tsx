@@ -36,7 +36,7 @@ export default function FAQ() {
 
   return (
     <SectionWrapper id="faq">
-      <h2 className="font-[family-name:var(--font-cormorant)] text-4xl md:text-5xl font-bold text-cream mb-16 text-center">
+      <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(1.75rem,1.2rem+2.5vw,3rem)] font-bold text-cream mb-10 sm:mb-16 text-center">
         Questions
       </h2>
 
@@ -50,7 +50,7 @@ export default function FAQ() {
             >
               <button
                 onClick={() => setOpenIndex(isOpen ? null : i)}
-                className="w-full flex items-center justify-between px-6 py-5 text-left cursor-pointer hover:bg-surface-card/50 transition-colors"
+                className="w-full flex items-center justify-between px-5 sm:px-6 py-5 text-left cursor-pointer hover:bg-surface-card/50 active:bg-surface-card/50 transition-colors min-h-[48px]"
               >
                 <span className="font-[family-name:var(--font-inter)] font-medium text-cream text-[15px] pr-4">
                   {faq.q}
@@ -62,12 +62,14 @@ export default function FAQ() {
                 )}
               </button>
               <div
-                className="transition-all duration-300 ease-out overflow-hidden"
-                style={{ maxHeight: isOpen ? "200px" : "0px" }}
+                className="grid transition-all duration-300 ease-out overflow-hidden"
+                style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
               >
-                <p className="px-6 pb-5 text-cream-dim/70 text-sm leading-relaxed font-[family-name:var(--font-inter)] font-light">
-                  {faq.a}
-                </p>
+                <div className="overflow-hidden">
+                  <p className="px-5 sm:px-6 pb-5 text-cream-dim/70 text-sm leading-relaxed font-[family-name:var(--font-inter)] font-light">
+                    {faq.a}
+                  </p>
+                </div>
               </div>
             </div>
           );

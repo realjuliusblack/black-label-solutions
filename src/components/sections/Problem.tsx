@@ -15,14 +15,14 @@ const painPoints = [
 export default function Problem() {
   return (
     <SectionWrapper id="problem">
-      <h2 className="font-[family-name:var(--font-cormorant)] text-4xl md:text-5xl font-bold text-cream mb-6">
+      <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(1.75rem,1.2rem+2.5vw,3rem)] font-bold text-cream mb-6">
         I Already Know Your <span className="text-gold">Problem</span>
       </h2>
       <p className="font-[family-name:var(--font-inter)] text-cream-dim/60 text-base font-light mb-14 max-w-2xl">
         I&apos;ve diagnosed hundreds of businesses. The patterns are always the same.
       </p>
 
-      <div className="space-y-7 max-w-3xl">
+      <div className="space-y-5 sm:space-y-7 max-w-3xl">
         {painPoints.map((point, i) => (
           <motion.div
             key={i}
@@ -45,7 +45,7 @@ export default function Problem() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.6 }}
-        className="mt-16 font-[family-name:var(--font-cormorant)] text-2xl md:text-3xl text-gold italic text-left max-w-2xl"
+        className="mt-10 sm:mt-16 font-[family-name:var(--font-cormorant)] text-xl sm:text-2xl md:text-3xl text-gold italic text-left max-w-2xl"
       >
         When you&apos;re ready, let&apos;s have a chat.
         <span className="block text-lg text-gold/50 mt-3 not-italic font-[family-name:var(--font-inter)] font-light tracking-wide">&mdash; Midas</span>

@@ -34,8 +34,8 @@ const steps = [
 export default function HowItWorks() {
   return (
     <SectionWrapper id="how-it-works">
-      <div className="text-center mb-20">
-        <h2 className="font-[family-name:var(--font-cormorant)] text-4xl md:text-5xl font-bold text-cream mb-5">
+      <div className="text-center mb-12 md:mb-20">
+        <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(1.75rem,1.2rem+2.5vw,3rem)] font-bold text-cream mb-5">
           How <span className="text-gold">Midas</span> Becomes Yours
         </h2>
         <p className="font-[family-name:var(--font-inter)] text-cream-dim/60 text-base font-light max-w-2xl mx-auto">
@@ -53,22 +53,22 @@ export default function HowItWorks() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="relative bg-surface-card/40 border border-surface-border/50 rounded-lg p-8 md:p-10 hover:border-gold-border/30 transition-colors duration-300"
+            className="relative bg-surface-card/40 border border-surface-border/50 rounded-lg p-6 sm:p-8 md:p-10 hover:border-gold-border/30 transition-colors duration-300"
           >
-            <div className="flex items-start gap-6">
-              <div className="shrink-0 w-14 h-14 rounded-full border border-gold-border/40 flex items-center justify-center bg-surface-deep/50">
-                <step.icon className="text-gold/70" size={22} strokeWidth={1.5} />
+            <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+              <div className="shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-gold-border/40 flex items-center justify-center bg-surface-deep/50">
+                <step.icon className="text-gold/70" size={20} strokeWidth={1.5} />
               </div>
               <div>
-                <div className="flex items-center gap-3 mb-3">
+                <div className="flex items-center gap-3 mb-2 sm:mb-3">
                   <span className="font-[family-name:var(--font-cormorant)] text-gold/50 text-lg font-bold">
                     {step.num}
                   </span>
-                  <h3 className="font-[family-name:var(--font-inter)] font-semibold text-cream text-lg">
+                  <h3 className="font-[family-name:var(--font-inter)] font-semibold text-cream text-base sm:text-lg">
                     {step.title}
                   </h3>
                 </div>
-                <p className="text-cream-dim/70 text-[15px] leading-relaxed font-[family-name:var(--font-inter)] font-light">
+                <p className="text-cream-dim/70 text-sm sm:text-[15px] leading-relaxed font-[family-name:var(--font-inter)] font-light">
                   {step.desc}
                 </p>
               </div>

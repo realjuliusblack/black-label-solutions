@@ -13,7 +13,7 @@ const points = [
 
 function CertBadge() {
   return (
-    <div className="relative w-44 h-44 mx-auto">
+    <div className="relative w-48 h-48 sm:w-44 sm:h-44 mx-auto">
       {/* Outer glow */}
       <div className="absolute inset-0 rounded-full bg-[#C9A84C]/[0.06] blur-xl" />
       <svg viewBox="0 0 200 200" className="relative w-full h-full">
@@ -36,12 +36,23 @@ function CertBadge() {
 export default function Certification() {
   return (
     <SectionWrapper id="certified">
-      <h2 className="font-[family-name:var(--font-cormorant)] text-4xl md:text-5xl font-bold text-cream mb-16 text-center">
+      <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(1.75rem,1.2rem+2.5vw,3rem)] font-bold text-cream mb-10 sm:mb-16 text-center">
         Battle-Tested. <span className="text-gold">Guaranteed.</span>
       </h2>
 
-      <div className="grid md:grid-cols-2 gap-16 items-center">
-        <div className="space-y-7">
+      <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+        {/* Badge first on mobile for visual impact */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="flex justify-center order-1 md:order-2"
+        >
+          <CertBadge />
+        </motion.div>
+
+        <div className="space-y-5 sm:space-y-7 order-2 md:order-1">
           {points.map((p, i) => (
             <motion.div
               key={i}
@@ -58,16 +69,6 @@ export default function Certification() {
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="flex justify-center"
-        >
-          <CertBadge />
-        </motion.div>
       </div>
     </SectionWrapper>
   );
