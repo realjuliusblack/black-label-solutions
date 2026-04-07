@@ -32,12 +32,13 @@ This is possible because we have no recruiters and a fully automated pipeline. E
 
 **Direct jobs** (e.g., posted directly to hospitals we have relationships with):
 - BLS margin: 10% of bill rate
+- Physician receives 90% of bill rate
 - No platform fee
 
 **VMS jobs** (sourced through platforms like Aya Healthcare, Locum Nation, etc.):
 - VMS platform takes 8% fee — **BLS absorbs this entirely**
-- BLS net margin: 2% of bill rate (very thin, but profitable at volume)
-- Hospital still pays same bill rate. Physician still earns same pay.
+- BLS net margin: 2% of bill rate (10% - 8%)
+- Hospital still pays same bill rate. Physician still earns same pay (90%).
 - Never pass VMS cost to hospital or physician — both sides stay attractive.
 
 ### BILL RATES BY SPECIALTY (BLS competitive bid rates, $/hr)
